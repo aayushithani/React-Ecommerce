@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.ProductDetail {
+    width: 100%;
+    height: auto;
+    margin-top: 2%;
+    /* background-color: white; */
+    background-color: rgb(255, 255, 255,0.4);
+}
+
+.ProductDetail .Row{
+    height: auto;
+    margin:5px;
+}
+
+.ProductDetail .Col{
+    font-family: 'Lato' sans-serif;
+}
+
+.ProductDetail div.MainProductImg {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin:10px;
+
+  }
+
+ .ProductDetail .Row .Col .ProductName{
+     font-size: 25px;
+  
+    } 
+
+ .ProductDetail .ProductBuyNow button {
+    background-color: #f98713;
+    color: #fff;
+    border: 2px solid #fff;
+    margin-top: 0.4em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+ 
+  .ProductDetail .ProductBuyNow button:hover {
+    color: #f98713;
+    background-color: #fff;
+    border: 2px solid #f98713;
+  }
+
+  .ProductDetail .ProductBuyNow .Quantity{
+      width: 50px;
+      margin: 10px;
+  }
+
+  .ProductDetail .ProductBuyNow Form{
+      width: 20%;
+      margin-bottom: 0px;
+  }
+
+  .ProductDetail .ProductBuyNow .FormGroup{
+      width: 100%;
+  }
+
+  .ProductDetail .ProductPriceRow  .Price h1{
+      color: black;
+  }
+
+
+  .ProductDetail  .ProductBuyNow{
+      padding: 20px 10px;
+  }

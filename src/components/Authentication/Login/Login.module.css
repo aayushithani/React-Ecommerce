@@ -1,0 +1,267 @@
+.Login .wrapper {
+    height: 100%;
+    width: 100%;
+    margin-top: 0%;
+    padding-top: 10%;
+    padding-bottom: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EAEDED;
+  }
+  
+  .Login .formWrapper {
+    width: 400px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px #555;
+    background-color: #ffffff;
+  }
+  
+  .Login form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Login h1 {
+    text-align: center;
+    width: 100%;
+    color: #111;
+    font-size: 1.7em;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .Login label {
+    font-size: 0.8em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+  }
+  
+  .Login input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    height: 30px;
+  }
+  
+  .Login input::placeholder {
+    font-size: 1.0em;
+    font-weight: lighter;
+    color: #999;
+  }
+  
+  .Login  input.error {
+    border: 1px solid red;
+  }
+  
+  .Login .errorMessage {
+    color: red;
+    font-size: 0.75em;
+    display: relative;
+  }
+
+  
+  .Login .email,
+  .Login .password {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+  .Login .email,
+  .Login .password {
+    width: 100%;
+  }
+  
+  .Login  .createAccount {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Login  .createAccount button {
+    background-color: #f98713;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 100%;
+    margin-top: 1em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+  }
+  
+  .Login  .createAccount button:hover {
+    color: #f98713;
+    background-color: #fff;
+    border: 2px solid #f98713;
+  }
+  
+  .Login  .createAccount small {
+    color: #999;
+    font-weight: lighter;
+  }
+
+  .Login .NavLink{
+    margin-left: 65%;
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+  }
+
+  .Login .NavLink:hover{
+    color: #f98713;
+    transition: 1s;
+  }
+
+  .Login .AccountNavLink{
+    font-size: 13px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+  }
+
+  .Login .AccountNavLink:hover{
+    color: #f98713;
+    transition: 1s;
+  }
+
+
+ 
+ @media(max-width:750px){
+  .Login  .wrapper {
+      margin-top: 0%;
+      padding-top: 30%;
+      padding-bottom: 70%;
+        height: 85%;
+        width: 100%;
+      }
+      
+      .Login   .formWrapper {
+        width: 290px;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+      }
+      
+      .Login     form {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .Login   h1 {
+        margin-top: 5px;
+        text-align: center;
+        width: 100%;
+        color: #111;
+        font-weight: lighter;
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+          Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      
+      .Login    label {
+        font-size: 0.7em;
+        margin-bottom: 0.25em;
+        color: #222;
+        font-weight: lighter;
+      }
+      
+      .Login    input {
+        padding: 10px 10px;
+        border-radius: 5px;
+        outline: none;
+        height: 5%;
+        border: 1px solid #cfcfcf;
+      }
+      
+      .Login    input::placeholder {
+        font-size: 0.5em;
+        font-weight: lighter;
+        color: #999;
+      }
+      
+      .Login    input.error {
+        border: 1px solid red;
+      }
+      
+      .Login    .errorMessage {
+        color: red;
+        font-size: 0.75em;
+        display: relative;
+      }
+      
+      .Login   .email,
+      .Login   .password {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1px;
+      }
+      
+      
+    .Login  .email,
+    .Login   .password {
+        width: 100%;
+        margin-bottom: 1px;
+      }
+      
+      .Login  .createAccount {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .Login   .createAccount button {
+        background-color: #f98713;
+        color: #fff;
+        border: 2px solid #fff;
+        width: 100%;
+        margin-top: 1em;
+        padding: 8px 0px;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        margin-bottom: 0.25em;
+      }
+      
+      .Login   .createAccount button:hover {
+        color: #f98713;
+        background-color: #fff;
+        border: 2px solid #f98713;
+      }
+      
+      .Login   .createAccount small {
+        color: #999;
+        font-weight: lighter;
+      }
+
+      .Login .NavLink{
+        margin-left: 65%;
+        font-size: 0.7em;
+        margin-bottom: 0.25em;
+        color: black;
+        text-decoration: none;
+      }
+    
+      .Login .AccountNavLink{
+        font-size: 0.7em;
+        margin-bottom: 0.25em;        
+        text-align: center;
+        color: black;
+        text-decoration: none;
+      }
+      
+ } 

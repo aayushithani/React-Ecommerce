@@ -1,0 +1,10 @@
+.SaleBanner {
+    width:auto;
+    background-color: black;
+    margin: 10px 10px;
+    padding:0px
+}
+
+.SaleBanner img {
+    height: 150px;
+}

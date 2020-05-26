@@ -1,0 +1,298 @@
+.Customer .wrapper {
+    height: 100%;
+    width: 100%;
+    margin-top: 0%;
+    padding-top: 7%;
+    padding-bottom: 12%;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EAEDED;
+  }
+  
+  .Customer .formWrapper {
+    width: 50%;
+    height:70%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px #555;
+    background-color: #ffffff;
+  }
+  
+  .Customer form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Customer h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.7em;
+    color: #111;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .Customer label {
+    font-size: 0.8em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+  }
+  
+  .Customer input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    height: 25px;
+  }
+  
+  .Customer input::placeholder {
+    font-size: 0.8em;
+    font-weight: lighter;
+    color: #999;
+  }
+  
+  .Customer  input.error {
+    border: 1px solid red;
+  }
+  
+  .Customer .errorMessage {
+    color: red;
+    font-size: 0.75em;
+    display: relative;
+  }
+  
+  .Customer .firstName {
+    margin-right: 1%;
+  }
+  
+  .Customer .lastName {
+    margin-left: 1%;
+  }
+
+  .Customer .middleName{
+      margin-left: 1%;
+  }
+
+  .Customer .confirmPassword{
+    margin-left: 1%;
+  }
+  
+  .Customer .password {
+    margin-left: 0%;
+  }
+
+
+  .Customer .firstName,
+  .Customer .lastName,
+  .Customer .middleName,
+  .Customer .email,
+  .Customer .password,
+  .Customer .confirmPassword,
+  .Customer .contact{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  
+  .Customer .firstName,
+  .Customer .lastName,
+  .Customer .middleName{
+    width: 184px;
+    /* width: 49%; */
+  }
+  
+  .Customer .email,
+  .Customer .contact{
+    width: 100%;
+  }
+
+  .Customer .password,
+  .Customer .confirmPassword {
+    width: 282px;
+  }
+  
+  .Customer  .createAccount {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Customer  .createAccount button {
+    background-color: #f98713;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 100%;
+    margin-top: 1em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+  }
+  
+  .Customer  .createAccount button:hover {
+    color: #f98713;
+    background-color: #fff;
+    border: 2px solid #f98713;
+  }
+  
+  .Customer  .createAccount small {
+    color: #999;
+    font-weight: lighter;
+  }
+
+ 
+ @media(max-width:750px){
+  .Customer  .wrapper {
+        height: 100%;
+        width: 100%;
+        margin-top: 15%;
+        margin-bottom: 15%;
+      }
+      
+      .Customer   .formWrapper {
+        width: 290px;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+      }
+      
+      .Customer     form {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .Customer   h1 {
+        margin-top: 5px;
+        text-align: center;
+        width: 100%;
+        color: #111;
+        font-weight: lighter;
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+          Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      
+      .Customer    label {
+        font-size: 0.7em;
+        margin-bottom: 0.25em;
+        color: #222;
+        font-weight: lighter;
+      }
+      
+      .Customer    input {
+        padding: 10px 10px;
+        border-radius: 5px;
+        outline: none;
+        height: 5%;
+        border: 1px solid #cfcfcf;
+      }
+      
+      .Customer    input::placeholder {
+        font-size: 0.5em;
+        font-weight: lighter;
+        color: #999;
+      }
+      
+      .Customer    input.error {
+        border: 1px solid red;
+      }
+      
+      .Customer    .errorMessage {
+        color: red;
+        font-size: 0.75em;
+        display: relative;
+      }
+      
+      .Customer    .firstName {
+        margin-right: 0px;
+      }
+      
+      .Customer    .lastName {
+        margin-left: 0px;
+      }
+
+      .Customer .middleName{
+          margin-left: 0px;
+      }
+
+
+      .Customer .confirmPassword{
+        margin-left: 0%;
+      }
+      
+      .Customer .password {
+        margin-left: 0%;
+      }
+      
+      .Customer   .firstName,
+      .Customer   .lastName,
+      .Customer   .email,
+      .Customer .middleName,
+      .Customer   .password,
+      .Customer .confirmPassword,
+      .Customer .contact{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: -3px;
+      }
+      
+      .Customer   .firstName,
+      .Customer   .lastName,
+      .Customer .middleName{
+        width: 100%;
+    }
+      
+    .Customer  .email,
+    .Customer .contact{
+        width: 100%;
+      }
+
+      .Customer .password,
+      .Customer .confirmPassword{
+        width: 100%;
+      }
+      
+      .Customer  .createAccount {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .Customer   .createAccount button {
+        background-color: #f98713;
+        color: #fff;
+        border: 2px solid #fff;
+        width: 100%;
+        margin-top: 1em;
+        padding: 8px 0px;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        margin-bottom: 0.25em;
+      }
+      
+      .Customer   .createAccount button:hover {
+        color: #f98713;
+        background-color: #fff;
+        border: 2px solid #f98713;
+      }
+      
+      .Customer   .createAccount small {
+        color: #999;
+        font-weight: lighter;
+      }
+    
+      
+ } 

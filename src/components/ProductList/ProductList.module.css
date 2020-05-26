@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.ProductList {
+    width: 100%;
+    height: auto;
+    margin: 20px 20px 20px 50px;
+    /* background-color: white; */
+    background-color: rgb(255, 255, 255,0.4);
+    border: 1px black solid;
+}
+
+
+.ProductList .Row{
+    height: auto;
+    margin:5px;
+    border: 1px black solid;
+
+}
+
+.ProductList .Col{
+    font-family: 'Lato' sans-serif;
+    border: 1px black solid;
+}
+
+.ProductList .CardDeck{ 
+    width:auto;
+    background-color: white;
+    margin: 10px auto 10px auto;
+    padding:1px;
+    flex-wrap: wrap;
+}
+
+.ProductList  .CardDeck .Card{
+    margin: 5px;
+    background-color: #EAEDED;
+    border: white;
+}
+
+.ProductList .CardDeck .CardImg{
+    height: 300px;
+    width: 250px;
+}
+
+.ProductList .CardDeck .CardImg:hover{
+    opacity: 0.5;
+    transition: 0.5s;
+
+}
+
+.ProductList  .CardDeck .Body{
+    margin:0px;
+    padding:0px;
+}
+
+.ProductList  .CardDeck .Body .Title{
+    font-size: 15px;
+    margin: 2px;
+    font-weight:bold;
+}
+
+@media(max-width:750px){
+    .ProductList .CardDeck{ 
+        width:auto;
+        background-color: white;
+        margin: 10px 10px;
+        padding:5px;
+    }
+    
+    .ProductList .CardDeck img {
+        height: 150px;
+    }
+    
+    .ProductList .CardDeck .CardImg{
+        height: 215px;
+    }
+}
