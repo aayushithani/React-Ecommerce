@@ -19,13 +19,15 @@ class Layout extends Component {
   };
 
   render() {
+    console.log("Layout",this.props)
     return (
       <>
-        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} {...this.props}/>
 
         <SideDrawer
           open={this.state.showSideDrawer}
-          closed={this.sideDrawerClosedHandler}
+          closed={this.sideDrawerClosedHandler} 
+          {...this.props}
         />
         <main className={classes.Content}>{this.props.children}</main>
       </>

@@ -1,0 +1,75 @@
+.ProductList .CardDeck{ 
+    width:auto;
+    background-color: white;
+    margin: 10px 10px 0px 10px;
+    padding:20px 20px 0px 20px;
+    flex-wrap: wrap;
+    z-index: -9;
+}
+
+.ProductList  .CardDeck .Card{
+    margin: 5px 15px 25px 15px;
+    background-color: white;
+    justify-content: space-between;
+    border: 1px white solid;
+    height: 250px;
+    width: 280px;
+}
+
+.ProductList .CardDeck .CardImg{
+    height: 200px;
+    width: 200px;
+    justify-content: space-between;
+
+
+}
+
+.ProductList .CardDeck .CardImg:hover{
+    opacity: 0.5;
+    transition: 0.5s;
+
+}
+
+.ProductList  .CardDeck .Body{
+    margin:0px;
+    padding:2px;
+}
+
+.ProductList  .CardDeck .Body .Title{
+    font-size: 15px;
+    margin: 10px;
+    font-weight:bold;
+}
+
+.ProductList  .CardDeck .Body .Title span{
+    margin:5px;
+    float: right;
+}
+
+.ProductList  .CardDeck .Body .Title span .NavLink{
+    margin: 1px 10px 1px 10px;
+    color:#f98713;
+}
+
+.ProductList  .CardDeck .Body .Title span .NavLink:hover{
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+
+@media(max-width:750px){
+    .ProductList .CardDeck{ 
+        width:auto;
+        background-color: white;
+        margin: 10px 10px;
+        padding:5px;
+    }
+    
+    .ProductList .CardDeck img {
+        height: 150px;
+    }
+    
+    .ProductList .CardDeck .CardImg{
+        height: 215px;
+    }
+}

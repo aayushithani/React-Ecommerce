@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.MutiSelectFilter {
+   width:100%;
+
+}
+
+.MutiSelectFilter h4 {
+    margin-top: 2%;
+    text-align: center;
+    font-family: 'Lato', cursive;
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+.MutiSelectFilter .Filter{
+    border-top:1px solid rgb(234, 237, 237); 
+    width: 96%;
+    display:flex;
+    justify-content: space-between;
+    margin: 2%;
+    margin-top: 0px;
+    padding:1%;
+    padding-top: 3%;
+}
+
+.MutiSelectFilter .Filter h6{
+    font-family: 'Lato', cursive;
+    font-size: 20px;
+}
+
+
+
+.MutiSelectFilter .Filter .Select{
+    padding:0px;
+    margin:0px;
+    width:180px;
+}
+
+
+.MutiSelectFilter .Filter .SortBy{
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 40px;
+    width:180px;
+}
+

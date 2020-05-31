@@ -12,12 +12,13 @@ const Toolbar = (props) => {
       <div className={classes.Logo}>
         <Logo />
       </div>
+      <nav className={classes.DesktopOnly}>
+        <Navbar {...props}/>
+      </nav>
       <div>
         <Search />
       </div>
-      <nav className={classes.DesktopOnly}>
-        <Navbar />
-      </nav>
+
    
     </header>
   );

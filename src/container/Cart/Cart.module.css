@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+.Cart {
+    width:100%;
+ }
+ 
+ .Cart h4 {
+     margin-top: 2%;
+     text-align: center;
+     font-family: 'Lato', cursive;
+     font-size: 30px;
+     margin-bottom: 0px;
+ }
+ 
+.Cart img{
+    width: 20%;
+}
+
+.Cart button{
+    background-color: #f98713;
+
+}
+
+.Cart button {
+    background-color: #f98713;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 100%;
+    margin-top: 1em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+  }
+  
+.Cart button:hover {
+    color: #f98713;
+    background-color: #fff;
+    border: 2px solid #f98713;
+  }

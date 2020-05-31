@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.PriceRange .PriceText{
+    font-family: 'Lato', cursive;
+    font-size: 20px;
+}
