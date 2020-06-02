@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import axios from "axios";
 import * as actions from '../../../store/actions/index';
 import { connect } from 'react-redux';
+// import setAuthorizationToken from '../setAuthorizationToken';
 
 
 class Login extends Component {
@@ -38,11 +39,13 @@ class Login extends Component {
     bodyFormData.append("password", this.state.user.password);
     bodyFormData.append("client_secret", "abcde");
 
-    axios.post("http://localhost:8080/oauth/token", bodyFormData)
+    axios.post("/oauth/token", bodyFormData)
     .then((response) => {
       const token = response.data.access_token;
-      localStorage.setItem("jwtToken", token);
-      this.props.onLogin(response.data.access_token);
+      // localStorage.setItem("jwtToken", token);
+      // setAuthorizationToken(token);
+      // console.log(jwtDecode(token));
+      this.props.onLogin(token);
     }).catch((error)  => {
       if (error.response) {
         this.setState({

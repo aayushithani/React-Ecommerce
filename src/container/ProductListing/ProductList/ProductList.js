@@ -34,13 +34,13 @@ class ProductList extends Component {
     return (
       <div className={classes.ProductList}>
         <CardDeck className={classes.CardDeck}>
-          {this.state.ProductList.map((eachitem) => (
-              <div className={classes.new}>
+          {this.state.ProductList.map((eachitem,index) => (
+              <div className={classes.new} key={index}>
                 <Card key={eachitem.ProductID} className={classes.Card}>
                   <NavLink to={`/productDetail/${eachitem.productVariationID}`}>
                     <Card.Img
                       variant="top"
-                      src={eachitem.Image}
+                      // src={eachitem.Image}
                       className={classes.CardImg}
                     />
                   </NavLink>

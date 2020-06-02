@@ -11,7 +11,7 @@ import Home from './container/HomePage/HomePage'
 import ProductDetail from './container/ProductDetail/ProductDetail'
 import ProductListing from './container/ProductListing/ProductListing'
 import Cart from './container/Cart/Cart'
-import Payment from './container/Payment/Payment'
+import ResetPassword from './container/Authentication/ForgotPassword/ResetPassword/ResetPassword';
 import Profile from './container/Profile/Profile';
 import './App.css';
 
@@ -24,18 +24,19 @@ const App = (props) => {
         <Route path="/signup" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/customerRegister" exact component={Customer} />
+        <Route path="/users/password/reset" exact component={ResetPassword} />
         <Route path="/sellerRegister" exact component={Seller} />
         <Route path="/productDetail/:productVariationId" exact component={ProductDetail} />
         <Route path="/productListing/:categoryId" exact component={ProductListing} />
         <Route path="/forgotPassword" exact component={ForgotPassword} />
-        <Route path="/payment" exact component={Payment} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>
       :
       <Switch>
         <Route path="/cart" exact component={Cart} />
-        <Route path="/payment" exact component={Payment} />
+        <Route path="/productDetail/:productVariationId" exact component={ProductDetail} />
+        <Route path="/productListing/:categoryId" exact component={ProductListing} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
@@ -55,7 +56,7 @@ const App = (props) => {
 
 const mapStateToProps = state => {
   return{
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.login.isAuthenticated
   }
 }
 

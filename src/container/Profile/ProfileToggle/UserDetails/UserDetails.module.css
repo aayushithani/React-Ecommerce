@@ -1,0 +1,89 @@
+.UserDetails form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #EAEDED;
+    padding: 20px;
+  }
+  
+  .UserDetails h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.7em;
+    color: #111;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .UserDetails label {
+    font-size: 0.8em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+  }
+  
+  .UserDetails input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    height: 25px;
+  }
+  
+  .UserDetails input::placeholder {
+    font-size: 0.8em;
+    font-weight: lighter;
+    color: #999;
+  }
+  
+  .UserDetails  input.error {
+    border: 1px solid red;
+  }
+  
+  .UserDetails .errorMessage {
+    color: red;
+    font-size: 0.75em;
+    display: relative;
+  }
+  
+  .UserDetails .firstName {
+    margin-right: 1%;
+  }
+  
+  .UserDetails .lastName {
+    margin-left: 1%;
+  }
+
+  .UserDetails .middleName{
+      margin-left: 1%;
+  }
+
+
+  .UserDetails .firstName,
+  .UserDetails .lastName,
+  .UserDetails .middleName,
+  .UserDetails .contact{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  
+  .UserDetails .firstName,
+  .UserDetails .lastName,
+  .UserDetails .middleName{
+    width: 202px;
+    /* width: 49%; */
+  }
+  
+  .UserDetails .contact{
+    width: 100%;
+  }
+
+  .UserDetails .Button{
+      margin-left: 25%;
+      align-items: center;
+      width: 50%;
+  }
+
+  

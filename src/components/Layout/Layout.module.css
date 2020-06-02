@@ -1,6 +1,6 @@
 .Content {
     margin-top: 20px;  /* 16px Content + 56px Toolbar */
-    background-color:white;
+    background-color: #EAEDED;
     width: 100%;
     height: 100%;
     overflow: scroll;

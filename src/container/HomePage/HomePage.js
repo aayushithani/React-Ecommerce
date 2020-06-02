@@ -4,7 +4,6 @@ import Slider from "./Slider/Slider";
 import SaleBanner from "./SaleBanner/SaleBanner";
 import Category from "./Category/Category";
 import Footer from "../../components/Navigation/Footer/Footer";
-// import ContactUs from "./ContactUs/ContactUs"
 
 const HomePage = () => {
   return (
@@ -12,7 +11,6 @@ const HomePage = () => {
       <Slider />
       <SaleBanner />
       <Category />
-      {/* <ContactUs/> */}
       <Footer />
     </div>
   );

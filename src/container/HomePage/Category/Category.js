@@ -12,7 +12,7 @@ class Category extends Component {
     axios
       .get(`/users/categories`)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         const updatedCatgory = response.data;
         this.setState({
           category: updatedCatgory,
@@ -20,25 +20,26 @@ class Category extends Component {
       })
       .catch((error) => {
         console.log(error.response);
-        // console.log(error.response.data.message);
+        console.log(error.response.data.message);
       });
   }
 
   render() {
-    // console.log(this.state.category);
+    console.log(this.state.category);
     
     return (
-      <div className={classes.Category}>
-        {this.state.category.map((eachitem) => (
-          <span className={classes.CategoryItem}  key={eachitem.id}>
+      <div className="">
+          {this.state.category.map((eachitem) => (
+            <span className={classes.CategoryItem} key={eachitem.id}>
               <div className={classes.Item} >
-              {/* <NavLink to="/productListing"> */}
-                <NavLink to={`/productListing/${eachitem.id}`}>
-                {eachitem.name}
+              <button>
+                <NavLink to={`/productListing/${eachitem.id}`} className={classes.Navlink}>
+                  {eachitem.name}
                 </NavLink>
+              </button>
               </div>
-          </span>
-        ))}
+            </span>
+          ))}
       </div>
     );
   }

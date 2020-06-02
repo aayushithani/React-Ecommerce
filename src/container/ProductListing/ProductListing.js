@@ -1,13 +1,13 @@
 import React from 'react'
 import ProductList from './ProductList/ProductList';
-import MultiSelectFilter from './MultiSelectFilter/MultiSelectFilter'
+// import MultiSelectFilter from './MultiSelectFilter/MultiSelectFilter'
 import Paging from './Paging/Paging'
 import Footer from '../../components/Navigation/Footer/Footer';
 
 const ProductListing = () => {
     return (
         <div>
-            <MultiSelectFilter/>
+            {/* <MultiSelectFilter/> */}
             <ProductList/>
             <Paging/>
             <Footer/>

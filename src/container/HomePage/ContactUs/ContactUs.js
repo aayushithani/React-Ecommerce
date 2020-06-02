@@ -35,7 +35,7 @@ const ContactUs = () => {
                     className="form-control"
                     placeholder="Your name"
                   />
-                  <label for="form-name"></label>
+                  <label htmlFor="form-name"></label>
                 </div>
 
                 <div className="md-form">
@@ -46,7 +46,7 @@ const ContactUs = () => {
                     className="form-control"
                     placeholder="Your email"
                   />
-                  <label for="form-email"></label>
+                  <label htmlFor="form-email"></label>
                 </div>
 
                 <div className="md-form">
@@ -57,7 +57,7 @@ const ContactUs = () => {
                     className="form-control"
                     placeholder="Subject"
                   />
-                  <label for="form-Subject"></label>
+                  <label htmlFor="form-Subject"></label>
                 </div>
 
                 <div className="md-form">
@@ -68,7 +68,7 @@ const ContactUs = () => {
                     rows="3"
                     placeholder="Your Message"
                   ></textarea>
-                  <label for="form-text"></label>
+                  <label htmlFor="form-text"></label>
                 </div>
                 <div className="text-center text-md-center">
                   <button>SUBMIT</button>
@@ -89,11 +89,11 @@ const ContactUs = () => {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.4637463415197!2d77.4324780509907!3d28.49569208238591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce670fa863f67%3A0x302ea32b4f957d29!2sTO%20THE%20NEW!5e0!3m2!1sen!2sin!4v1590957282971!5m2!1sen!2sin"
                 width="600"
                 height="450"
-                frameborder="0"
+                frameBorder="0"
                 style={{border:"0"}}
-                allowfullscreen=""
+                allowFullScreen=""
                 aria-hidden="false"
-                tabindex="0"
+                tabIndex="0"
               ></iframe>
             </div>
           </div>

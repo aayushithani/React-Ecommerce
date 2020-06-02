@@ -81,8 +81,12 @@
       margin-left: 1%;
   }
 
+  .Seller .gst{
+    margin-left: 1%;
+  }
+
   .Seller .companyName{
-    margin-left: 0%;
+    margin-right: 1%;
   }
 
   .Seller .companyContact{
@@ -123,7 +127,8 @@
   .Seller .state,
   .Seller .country,
   .Seller .addressLine,
-  .Seller .zipCode {
+  .Seller .zipCode,
+  .Seller .gst {
     display: flex;
     flex-direction: column;
     margin-bottom: 5px;
@@ -145,8 +150,9 @@
 
 
   .Seller .companyName,
-  .Seller .companyContact {
-    width: 282px;
+  .Seller .companyContact,
+  .Seller .gst {
+    width: 184px;
     /* width: 49%; */
   }
   
@@ -272,6 +278,10 @@
         margin-left: 0%;
       }
 
+      .Seller .gst{
+        margin-left: 0%;
+      }
+
       .Seller .companyContact{
         margin-left: 0px;
       }
@@ -311,7 +321,8 @@
       .Seller   .lastName,
       .Seller .middleName,
       .Seller .addressLine,
-      .Seller .zipCode{
+      .Seller .zipCode,
+      .Seller .gst{
         display: flex;
         flex-direction: column;
         margin-bottom: -3px;
@@ -332,7 +343,8 @@
 
 
     .Seller .companyName,
-    .Seller .companyContact {
+    .Seller .companyContact,
+    .Seller .gst {
       width: 100%;
     }
     

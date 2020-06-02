@@ -14,7 +14,7 @@ class Customer extends Component {
       confirmPassword: "",
       contact: "",
     },
-    errors: {
+    validations: {
       firstName: null,
       lastName: null,
       middleName: null,
@@ -23,57 +23,46 @@ class Customer extends Component {
       confirmPassword: null,
       contact: null,
     },
+    error: null
   };
-
-  // onChangeHandler = (event) => {
-  //   this.handleValidations(event);
-  //   const updatedUser = {
-  //     ...this.state.user,
-  //     [event.target.name]: event.target.value,
-  //   };
-  //   this.setState({
-  //     user: updatedUser,
-  //   });
-  // };
 
   onChangeHandler = (event) => {
     const { name, value } = event.target;
-    let errors = this.state.errors;
+    let validations = this.state.validations;
     const validEmailRegex = RegExp(
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
     );
     const validPasswordRegex = RegExp(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d.*)(?=.*\\W.*)[a-zA-Z0-9\\S]{8,15}$/i
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,15}$/i
     );
     const validContactRegex = RegExp(
-      /^(?:\\s+|)((0|(?:(\\+|)91))(?:\\s|-)*(?:(?:\\d(?:\\s|-)*\\d{9})|(?:\\d{2}(?:\\s|-)*\\d{8})|(?:\\d{3}(?:\\s|-)*\\d{7}))|\\d{10})(?:\\s+|)$/i
+      /^(?:\s+|)((0|(?:(\+|)91))(?:\s|-)*(?:(?:\d(?:\s|-)*\d{9})|(?:\d{2}(?:\s|-)*\d{8})|(?:\d{3}(?:\s|-)*\d{7}))|\d{10})(?:\s+|)$/i
     );
 
     switch (name) {
       case "firstName":
-        errors.firstName = value.length < 2 ? "This is a required Field!" : "";
+        validations.firstName = value.length < 1 ? "This is a required Field!" : "";
         break;
       case "lastName":
-        errors.lastName = value.length < 2 ? "This is a required Field!" : "";
+        validations.lastName = value.length < 1 ? "This is a required Field!" : "";
         break;
       case "email":
-        errors.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
+        validations.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
         break;
       case "password":
-        errors.password = validPasswordRegex.test(value)
+        validations.password = validPasswordRegex.test(value)
           ? ""
           : "Password is not valid!";
         break;
       case "confirmPassword":
-        errors.confirmPassword =
-          errors.password === value
+        validations.confirmPassword = validPasswordRegex.test(value)
             ? ""
-            : "Password and Confirm Password Should Match!";
+            : "Password is not valid!";
         break;
       case "contact":
-        errors.contact = validContactRegex.test(value)
+        validations.contact = validContactRegex.test(value)
           ? ""
-          : "Password and Confirm Password Should Match!";
+          : "Contact No. is not valid!";
         break;
       default:
         break;
@@ -84,20 +73,33 @@ class Customer extends Component {
       [event.target.name]: event.target.value,
     };
     this.setState({
-      errors: errors,
+      validations: validations,
       user: updatedUser,
     });
   };
 
   submitHandler = (e) => {
     e.preventDefault();
+    if(this.state.user.password !== this.state.user.confirmPassword) {
+      return this.setState({
+        ...this.state.validations,
+        confirmPassword: 'Password And Confirm Password Do Not Match!'
+      })
+    }
     console.log(this.state.user);
-
     axios
       .post("/users/customers-registration", this.state.user)
       .then((response) => {
         console.log(response);
         console.log(response.data);
+        alert("Registered Successfully!");
+      }).catch((error)  => {
+        console.log(error.response.data.message)
+        if (error.response.data.message) {
+          this.setState({
+            error : error.response.data.message
+          })
+        }
       });
   };
 
@@ -127,9 +129,9 @@ class Customer extends Component {
                   value={firstName}
                   onChange={this.onChangeHandler}
                 />
-                {this.state.errors.firstName && (
+                {this.state.validations.firstName && (
                   <label htmlFor="Error" style={{ color: "red" }}>
-                    {this.state.errors.firstName}
+                    {this.state.validations.firstName}
                   </label>
                 )}
               </div>
@@ -154,9 +156,9 @@ class Customer extends Component {
                   value={lastName}
                   onChange={this.onChangeHandler}
                 />
-                  {this.state.errors.middleName && (
+                {this.state.validations.lastName && (
                   <label htmlFor="Error" style={{ color: "red" }}>
-                    {this.state.errors.middleName}
+                    {this.state.validations.lastName}
                   </label>
                 )}
               </div>
@@ -170,6 +172,11 @@ class Customer extends Component {
                   value={email}
                   onChange={this.onChangeHandler}
                 />
+                {this.state.validations.email && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.validations.email}
+                  </label>
+                )}
               </div>
               <div className={classes.password}>
                 <label htmlFor="password">Password</label>
@@ -177,10 +184,16 @@ class Customer extends Component {
                   className={classes.password}
                   placeholder="Password"
                   type="password"
+                  id='password'
                   name="password"
                   value={password}
                   onChange={this.onChangeHandler}
                 />
+                {this.state.validations.password && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.validations.password}
+                  </label>
+                )}
               </div>
               <div className={classes.confirmPassword}>
                 <label htmlFor="confirmPassword">Confirm Password</label>
@@ -192,6 +205,11 @@ class Customer extends Component {
                   value={confirmPassword}
                   onChange={this.onChangeHandler}
                 />
+                {this.state.validations.confirmPassword && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.validations.confirmPassword}
+                  </label>
+                )}
               </div>
               <div className={classes.contact}>
                 <label htmlFor="contact">Contact</label>
@@ -203,14 +221,17 @@ class Customer extends Component {
                   value={contact}
                   onChange={this.onChangeHandler}
                 />
+                {this.state.validations.contact && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.validations.contact}
+                  </label>
+                )}
               </div>
-
-              {/* {this.state.error && (
-                <label htmlFor="Error" style={{ color: "red" }}>
-                  {this.state.error}
-                </label>
-              )} */}
-
+              {this.state.error && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.error}
+                  </label>
+                )}
               <div className={classes.createAccount}>
                 <button type="submit">Create Account</button>
                 <NavLink to="/login">

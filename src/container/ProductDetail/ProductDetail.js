@@ -9,11 +9,13 @@ import {
 } from "react-bootstrap";
 import classes from "./ProductDetail.module.css";
 import { withRouter } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
 
 class ProductDetail extends Component {
   state = {
-    ProductVariation: {}
+    ProductVariation: {},
   };
 
   componentDidMount() {
@@ -22,12 +24,10 @@ class ProductDetail extends Component {
     axios
       .get(`/users/products/${productVariationId}`)
       .then((response) => {
-        // console.log(response.data[0]);
         const updatedProductVariation = response.data[0];
         this.setState({
           ProductVariation: updatedProductVariation,
         });
-        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error.response);
@@ -35,9 +35,22 @@ class ProductDetail extends Component {
       });
   }
 
+  onClickHandler = () => {
+    if(!this.props.isAuthenticated){
+      console.log(this.props.history)
+      // alert("Please LogIn!",this.props.history);
+      this.props.history.push("/login");
+    }
+    else{
+      console.log("Product detail state:", this.state.ProductVariation);
+      console.log("product detail token:", this.props.token);
+      this.props.onOrderProduct(this.state.ProductVariation);
+      this.props.history.push("/cart");
+    }
+  };
 
   render() {
-    // console.log(this.state.ProductVariation);
+    console.log(this.state.ProductVariation);
     // console.log(this.state.ProductVariation.ProductName);
     return (
       <div>
@@ -72,11 +85,9 @@ class ProductDetail extends Component {
                   <p>{this.state.ProductVariation.ProductName}</p>
                 </h3>
                 <h6>
-                  {/* <p style={{ color: "blue" }}>
-                    <del>M.R.P.- ₹ 1,999.00</del>
-                  </p> */}
-                  <p style={{ fontWeight: "bold" }}>Price: ₹ {this.state.ProductVariation.Price}</p>
-                  {/* <p>You Save: ₹ 1,190.00 (60%)</p> */}
+                  <p style={{ fontWeight: "bold" }}>
+                    Price: ₹ {this.state.ProductVariation.Price}
+                  </p>
                 </h6>
 
                 <p style={{ color: "green" }}>In stock.</p>
@@ -86,7 +97,8 @@ class ProductDetail extends Component {
                 </p>
 
                 <p style={{ textAlign: "justify" }}>
-                <strong> Description:</strong> {this.state.ProductVariation.Description}
+                  <strong> Description:</strong>{" "}
+                  {this.state.ProductVariation.Description}
                 </p>
               </div>
             </Col>
@@ -105,7 +117,7 @@ class ProductDetail extends Component {
                       <Form className={classes.FormGroup}>
                         <Form.Group controlId="exampleForm.SelectCustomSizeSm">
                           <Form.Label style={{ margin: "10px" }}>
-                            Quantity 
+                            Quantity
                           </Form.Label>
                           <Form.Control
                             as="select"
@@ -122,7 +134,14 @@ class ProductDetail extends Component {
                         </Form.Group>
                       </Form>
                       <div>
-                        <button type="submit">Add To Cart</button>
+                        {/* <NavLink to="/cart"> */}
+                          <button
+                            type="submit"
+                            onClick={this.onClickHandler}
+                          >
+                            Add To Cart
+                          </button>
+                        {/* </NavLink> */}
                         <button type="submit">Buy Now</button>
                         <button type="submit">Add To WishList</button>
                       </div>
@@ -150,4 +169,20 @@ class ProductDetail extends Component {
   }
 }
 
-export default withRouter(ProductDetail);
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.login.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onOrderProduct: (orderData) =>
+      dispatch(actions.purchaseProduct(orderData)),
+  };
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductDetail));

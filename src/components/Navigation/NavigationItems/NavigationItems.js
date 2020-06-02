@@ -13,9 +13,6 @@ const Navigation = (props) => {
           <li className={classes.NavigationItem}>
             <NavLink to="/login">Login</NavLink>
           </li>
-          <li className={classes.NavigationItem}>
-            <NavLink to="/payment">payment</NavLink>
-          </li>
         </ul>
       ) : null}
 
