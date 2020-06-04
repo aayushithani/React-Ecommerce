@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
     token : null,
-    isAuthenticated:false
+    isAuthenticated:false,
+    authority:null
 }
 
 const loginSuccess = (state, action) => {
@@ -15,9 +16,20 @@ const loginSuccess = (state, action) => {
     }
 }
 
+const userRole = (state, action) => {
+    console.log("In Reducer",action);
+    console.log("In Reducer",action.authority);
+    return {
+      ...state,
+      authority:action.authority,    
+    }
+}
+
 const reducer = (state = initialState,action) => {
+    console.log("state: ==",state)
     switch(action.type){
         case actionTypes.LOGIN_SUCCESS: return loginSuccess(state,action);
+        case actionTypes.USER_ROLE: return userRole(state,action)
         default: return state;
     }
 }

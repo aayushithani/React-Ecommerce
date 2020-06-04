@@ -16,21 +16,21 @@ class Customer extends Component {
       contact: "",
     },
     validations: {
-      firstName: null,
-      lastName: null,
-      middleName: null,
-      email: null,
-      password: null,
-      confirmPassword: null,
-      contact: null,
+      firstName: "",
+      lastName: "",
+      middleName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      contact: "",
     },
-    error: null
+    error: null,
   };
 
   onChangeHandler = (event) => {
     let validations = this.state.validations;
     Validations(event,validations);
-
+ 
     const updatedUser = {
       ...this.state.user,
       [event.target.name]: event.target.value,
@@ -55,12 +55,12 @@ class Customer extends Component {
       .then((response) => {
         console.log(response);
         console.log(response.data);
-        alert("Registered Successfully!");
+        alert("Registered Successfully! The Activation Link Has Been Sent to your EmailID.");
       }).catch((error)  => {
-        console.log(error.response.data.message)
+        const ValidationError = `${error.response.data.message} \n ${error.response.data.details} `
         if (error.response.data.message) {
           this.setState({
-            error : error.response.data.message
+            error : ValidationError
           })
         }
       });
@@ -92,7 +92,7 @@ class Customer extends Component {
                   value={firstName}
                   onChange={this.onChangeHandler}
                 />
-                {this.state.validations.firstName && (
+                {(this.state.validations.firstName) && (
                   <label htmlFor="Error" style={{ color: "red" }}>
                     {this.state.validations.firstName}
                   </label>

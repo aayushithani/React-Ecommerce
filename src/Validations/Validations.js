@@ -15,10 +15,10 @@ export const Validations = (event, errors) => {
   const { name, value } = event.target;
   switch (name) {
     case "firstName":
-      errors.firstName = value.length > 0 ? "This is a required Field!" : "";
+      errors.firstName = value.length < 2 ? "This is a required Field!" : "";
       break;
     case "lastName":
-      errors.lastName = value.length > 0 ? "This is a required Field!" : "";
+      errors.lastName = value.length === 0 ? "This is a required Field!" : "";
       break;
     case "email":
       errors.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
@@ -42,7 +42,7 @@ export const Validations = (event, errors) => {
       errors.gst = validGstRegex.test(value) ? "" : "GST No. is not valid!";
       break;
     case "companyName":
-      errors.companyName = value.length > 0 ? "This is a required Field!" : "";
+      errors.companyName = value.length === 0 ? "This is a required Field!" : "";
       break;
     case "contact":
       errors.contact = validContactRegex.test(value)
@@ -50,33 +50,33 @@ export const Validations = (event, errors) => {
         : "Contact No. is not valid!";
       break;
     case "city":
-      errors.city = value.length > 0 ? "This is a required Field!" : "";
+      errors.city = value.length  === 0 ? "This is a required Field!" : "";
       break;
 
     case "state":
-      errors.state = value.length  > 0 ? "This is a required Field!" : "";
+      errors.state = value.length   === 0 ? "This is a required Field!" : "";
       break;
 
     case "country":
-      errors.country = value.length > 0 ? "This is a required Field!" : "";
+      errors.country = value.length  === 0 ? "This is a required Field!" : "";
       break;
 
     case "addressLine":
-      errors.addressLine = value.length > 0 ? "This is a required Field!" : "";
+      errors.addressLine = value.length  === 0 ? "This is a required Field!" : "";
       break;
 
     case "address_line":
-      errors.address_line = value.length > 0 ? "This is a required Field!" : "";
+      errors.address_line = value.length  === 0 ? "This is a required Field!" : "";
       break;
     case "zipCode":
-      errors.zipCode = value.length > 0 ? "Zip-Code is not valid!" : "";
+      errors.zipCode = value.length  === 0 ? "Zip-Code is not valid!" : "";
       break;
 
     case "zip_code":
       errors.zip_code = value.length < 6 ? "Zip-Code is not valid!" : "";
       break;
     case "label":
-      errors.label = value.length > 0 ? "This is a required Field!" : "";
+      errors.label = value.length  === 0 ? "This is a required Field!" : "";
       break;
     default:
       break;

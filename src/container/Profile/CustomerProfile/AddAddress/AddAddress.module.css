@@ -7,6 +7,16 @@
     border-radius: 5px;
 }
 
+.Address h1 {
+  text-align: center;
+  width: 100%;
+  color: #111;
+  font-size: 1.7em;
+  font-weight: lighter;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 .Address .Container{
   margin: 0px;
 }
@@ -28,17 +38,7 @@
     display: flex;
     flex-wrap: wrap;
   }
-  
-  .Address h1 {
-      text-align: center;
-      width: 100%;
-      color: #111;
-      font-size: 1.7em;
-      font-weight: lighter;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    }
-    
+
   
   .Address label {
     font-size: 0.8em;
@@ -71,14 +71,11 @@
   }
 
   .Address .city,
-  .Address .country {
+  .Address .country
+ {
     margin-right: 1%;
   }
   
-  .Address .state,
-  .Address .label {
-    margin-left: 1%;
-  }
 
   .Address .city,
   .Address .state,
@@ -96,7 +93,7 @@
   .Address .state,
   .Address .label,
   .Address .country{
-    width: 200px;
+    width: 215px;
     /* width: 49%; */
   }
 
@@ -104,5 +101,25 @@
   .Address .addressLine,
   .Address .zipCode  {
     width: 100%;
+  }
+  
+  .Address  .createAccount button {
+    background-color: #f98713;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 50%;
+    margin-top: 1em;
+    padding: 8px 0px;
+    margin-left: 28%;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+  }
+  
+  .Address  .createAccount button:hover {
+    color: #f98713;
+    background-color: #fff;
+    border: 2px solid #f98713;
   }
   

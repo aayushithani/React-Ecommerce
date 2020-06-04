@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import classes from "./UserDetails.module.css";
-import { Validations } from "../../../Validations/Validations";
+import classes from '../../UserDetails.module.css';
+import { Validations } from '../../../../Validations/Validations';
 import { connect } from "react-redux";
 import axios from "axios";
 
-class UserDetails extends Component {
+class CustomerDetails extends Component {
   state = {
     user: {
       email: "",
@@ -26,19 +26,16 @@ class UserDetails extends Component {
   };
 
   componentDidMount() {
-    const token = this.props.token;
-    console.log(token);
     axios
       .get(`/customers/profile`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${this.props.token}`,
         },
       })
       .then((response) => {
-        console.log(response.data.data);
-        const updatedUser = response.data.data;
         this.setState({
-          user: updatedUser,
+          ...this.state,
+          user: response.data.data,
         });
       })
       .catch((error) => {
@@ -48,6 +45,7 @@ class UserDetails extends Component {
 
   onEditHandler = (e) => {
     this.setState({
+      ...this.state,
       edit: false,
       update: true,
       disabled: !this.state.disabled,
@@ -56,24 +54,22 @@ class UserDetails extends Component {
 
   onUpdateHandler = (e) => {
     e.preventDefault();
-    const token = this.props.token;
+    const RequestBody = {
+      firstName: this.state.user.firstName,
+      middleName: this.state.user.middleName,
+      lastName: this.state.user.lastName,
+      contact: this.state.user.contact,
+    };
+    const updateAlert = "The Data Has been Updated Successfully!";
+
     axios
-      .patch(
-        `/customers/profile`,
-        {
-          firstName: this.state.user.firstName,
-          middleName: this.state.user.middleName,
-          lastName: this.state.user.lastName,
-          contact: this.state.user.contact,
+      .patch(`/customers/profile`, RequestBody, {
+        headers: {
+          Authorization: `Bearer ${this.props.token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      })
       .then((response) => {
-        alert("The Data Has been Updated Successfully!");
+        alert(updateAlert);
       })
       .catch((error) => {
         if (error.response.data.message) {
@@ -84,6 +80,7 @@ class UserDetails extends Component {
       });
 
     this.setState({
+      ...this.state,
       edit: true,
       update: false,
       disabled: !this.state.disabled,
@@ -197,7 +194,8 @@ class UserDetails extends Component {
 const mapStateToProps = (state) => {
   return {
     token: state.login.token,
+    authority: state.login.authority,
   };
 };
 
-export default connect(mapStateToProps, null)(UserDetails);
+export default connect(mapStateToProps, null)(CustomerDetails);

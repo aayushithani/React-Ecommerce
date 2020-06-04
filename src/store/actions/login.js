@@ -8,3 +8,13 @@ export const loginSuccess = (access_token) => {
     };
   };
   
+
+
+  export const userRole = (authority) => {
+    console.log("Action triggered", authority);
+    return {
+      type: actionTypes.USER_ROLE,
+      authority: authority,
+    };
+  };
+    

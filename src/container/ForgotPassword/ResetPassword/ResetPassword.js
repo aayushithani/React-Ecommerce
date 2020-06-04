@@ -17,10 +17,7 @@ class ResetPassword extends Component {
   };
 
   componentDidMount() {
-    // console.log(this.props.token);
-    // console.log(this.props.location.search);
     const values = queryString.parse(this.props.location.search);
-    // console.log(values.token);
     this.setState({
       token: values.token,
     });
@@ -34,11 +31,9 @@ class ResetPassword extends Component {
         confirmPassword: this.state.confirmPassword,
       })
       .then((response) => {
-        // console.log(response.data);
         alert("Reset Password Mail Has Been Sent Successfully!");
       })
       .catch((error) => {
-        // console.log(error.response.data.message);
         if (error.response.data.message) {
           this.setState({
             error: error.response.data.message,

@@ -52,15 +52,18 @@
     display: relative;
   }
   
-  .UserDetails .firstName {
+  .UserDetails .firstName,
+  .UserDetails .companyContact {
     margin-right: 1%;
   }
   
-  .UserDetails .lastName {
+  .UserDetails .lastName,
+  .UserDetails .gst {
     margin-left: 1%;
   }
 
-  .UserDetails .middleName{
+  .UserDetails .middleName
+  .UserDetails .companyName{
       margin-left: 1%;
   }
 
@@ -68,7 +71,10 @@
   .UserDetails .firstName,
   .UserDetails .lastName,
   .UserDetails .middleName,
-  .UserDetails .contact{
+  .UserDetails .contact,
+  .UserDetails .companyContact,
+  .UserDetails .gst,
+  .UserDetails .companyName{
     display: flex;
     flex-direction: column;
     margin-bottom: 5px;
@@ -76,8 +82,11 @@
   
   .UserDetails .firstName,
   .UserDetails .lastName,
-  .UserDetails .middleName{
-    width: 202px;
+  .UserDetails .middleName,
+  .UserDetails .companyContact,
+  .UserDetails .gst,
+  .UserDetails .companyName{
+    width: 207px;
     /* width: 49%; */
   }
   

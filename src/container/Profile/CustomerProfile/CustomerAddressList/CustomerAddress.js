@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import classes from "./UserAddressList.module.css";
-import { Validations } from "../../../Validations/Validations";
+import { Validations } from '../../../../Validations/Validations';
 import axios from "axios";
 import { connect } from "react-redux";
 
@@ -17,6 +17,7 @@ class Address extends Component {
       zip_code: null,
       label: null,
     },
+    error:null
   };
 
   onChangeHandler = (event) => {
@@ -209,6 +210,11 @@ class Address extends Component {
                 )}
               </div>
             </form>
+            {this.state.error && (
+                <label htmlFor="Error" style={{ color: "red" }}>
+                  {this.state.error}
+                </label>
+              )}
           </Col>
           <Col sm={4} className={classes.Col}>
             {this.state.disabled ? (

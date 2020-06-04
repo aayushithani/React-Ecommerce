@@ -18,7 +18,7 @@ const SideDrawer = (props) => {
           <Logo />
         </div>
         <nav style={{marginLeft:"0px"}}>
-          <NavigationItems {...props}/>
+          <NavigationItems/>
         </nav>
       </div>
     </div>

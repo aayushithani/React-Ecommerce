@@ -14,6 +14,7 @@ class UserPassword extends Component {
       password: "",
       confirmPassword: "",
     },
+    error:null
   };
 
   onChangeHandler = (event) => {
@@ -31,31 +32,47 @@ class UserPassword extends Component {
   };
 
   submitForm = (e) => {
-    const token = this.props.token;
     e.preventDefault();
-    axios
-      .patch(
-        `/customers/password/change`,
-        {
-          password: this.state.user.password,
-          confirmPassword: this.state.user.confirmPassword,
-        },
-        {
+    const RequestBody = {
+      password: this.state.user.password,
+      confirmPassword: this.state.user.confirmPassword,
+    };
+    const successAlert = "Your Password has been Changed Successfully!";
+    if (this.props.authority === "ROLE_CUSTOMER") {
+      axios
+        .patch(`/customers/password/change`, RequestBody, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${this.props.token}`,
           },
-        }
-      )
-      .then((response) => {
-        alert("Your Password has been Changed Successfully!");
-      })
-      .catch((error) => {
-        if (error.response.data.message) {
-          this.setState({
-            error: error.response.data.message,
-          });
-        }
-      });
+        })
+        .then((response) => {
+          alert(successAlert);
+        })
+        .catch((error) => {
+          if (error.response.data.message) {
+            this.setState({
+              error: error.response.data.data,
+            });
+          }
+        });
+    } else if (this.props.authority === "ROLE_SELLER") {
+      axios
+        .patch(`/sellers/password/change`, RequestBody, {
+          headers: {
+            Authorization: `Bearer ${this.props.token}`,
+          },
+        })
+        .then((response) => {
+          alert(successAlert);
+        })
+        .catch((error) => {
+          if (error.response.data.message) {
+            this.setState({
+              error: error.response.data.message,
+            });
+          }
+        });
+    }
   };
 
   render() {
@@ -97,6 +114,11 @@ class UserPassword extends Component {
               </label>
             )}
           </div>
+          {this.state.error && (
+                <label htmlFor="Error" style={{ color: "red" }}>
+                  {this.state.error}
+                </label>
+              )}
           <div className={classes.createAccount}>
             <button type="submit">Submit</button>
           </div>
@@ -109,6 +131,7 @@ class UserPassword extends Component {
 const mapStateToProps = (state) => {
   return {
     token: state.login.token,
+    authority: state.login.authority,
   };
 };
 

@@ -7,7 +7,7 @@ const Navbar = (props) => {
     <div>
       <nav className={classes.Navbar}>
         <div>
-          <NavigationItems {...props} />
+          <NavigationItems/>
         </div>
       </nav>
     </div>

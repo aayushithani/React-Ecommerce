@@ -70,10 +70,10 @@ class Seller extends Component {
     axios.post("/users/sellers-registration", payload).then((response) => {
       alert("Registered Successfully, Waiting for Admin Approval!");
     }).catch((error)  => {
-      console.log(error.response.data.message)
+      const ValidationError = `${error.response.data.message} \n ${error.response.data.details} `
       if (error.response.data.message) {
         this.setState({
-          error : error.response.data.message
+          error : ValidationError
         })
       }
     });

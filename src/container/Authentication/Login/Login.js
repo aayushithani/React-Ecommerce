@@ -4,7 +4,6 @@ import { NavLink, Redirect } from "react-router-dom";
 import axios from "axios";
 import * as actions from '../../../store/actions/index';
 import { connect } from 'react-redux';
-// import setAuthorizationToken from '../setAuthorizationToken';
 
 
 class Login extends Component {
@@ -31,7 +30,7 @@ class Login extends Component {
 
 
   submitForm = (e) => {
-    e.preventDefault(); //dont want to reload the page when submit
+    e.preventDefault();
     var bodyFormData = new FormData();
     bodyFormData.set("grant_type", "password");
     bodyFormData.append("client_id", "live-test");
@@ -42,11 +41,13 @@ class Login extends Component {
     axios.post("/oauth/token", bodyFormData)
     .then((response) => {
       const token = response.data.access_token;
-      // localStorage.setItem("jwtToken", token);
-      // setAuthorizationToken(token);
-      // console.log(jwtDecode(token));
       this.props.onLogin(token);
-    }).catch((error)  => {
+      return (axios.post("/users/role", { email: this.state.user.email})
+      .then((response) => {
+        console.log(response.data.data);
+        this.props.onUserRole(response.data.data);
+      })
+    )}).catch((error)  => {
       if (error.response) {
         this.setState({
           error : "Incorrect Email or Password!"
@@ -57,7 +58,7 @@ class Login extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to="/admin" />;
+      return <Redirect to="/" />;
     }
     return (
       <div className={classes.Login}>
@@ -116,7 +117,8 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-      onLogin: (access_token) => dispatch(actions.loginSuccess(access_token))
+      onLogin: (access_token) => dispatch(actions.loginSuccess(access_token)),
+      onUserRole: (authority) => dispatch(actions.userRole(authority))
   }
 }
 

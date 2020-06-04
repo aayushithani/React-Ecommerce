@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import classes from "./UserAddressList.module.css";
-import UserAddress from "./UserAddress";
+import CustomerAddress from './CustomerAddress';
 
 class UserAddressList extends Component {
   state = {};
@@ -38,7 +38,7 @@ class UserAddressList extends Component {
         console.log("Address ID:",value.id);
         output.push(
           <div className={classes.Address} key={value.id}>
-            <UserAddress data={value} />
+            <CustomerAddress data={value} />
           </div>
         );
       }

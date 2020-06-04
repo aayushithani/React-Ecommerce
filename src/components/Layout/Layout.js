@@ -22,12 +22,11 @@ class Layout extends Component {
     console.log("Layout",this.props)
     return (
       <>
-        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} {...this.props}/>
+        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler}/>
 
         <SideDrawer
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler} 
-          {...this.props}
         />
         <main className={classes.Content}>{this.props.children}</main>
       </>
