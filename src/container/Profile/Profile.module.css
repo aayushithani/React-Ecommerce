@@ -2,14 +2,14 @@
     width: 100%;
     height: auto;
     margin-top: 2%;
+    margin-bottom: 5%;
     /* background-color: white; */
-    background-color: rgb(255, 255, 255,0.4);
 }
 
 .Profile .Row{
     height: auto;
-    margin:20px;
-    padding: 20px;
+    margin:10px;
+    padding: 10px;
 }
 
 .Profile .Col{

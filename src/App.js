@@ -2,16 +2,16 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from './components/Layout/Layout'
 import "bootstrap/dist/css/bootstrap.min.css";
-import Register from './container/Authentication/Register/Register';
+import Register from './container/Register/Register';
 import Login from './container/Authentication/Login/Login'
-import Customer from './container/Authentication/Register/Customer/Customer'
-import Seller from './container/Authentication/Register/Seller/Seller'
-import ForgotPassword from './container/Authentication/ForgotPassword/ForgotPassword'
+import Customer from './container/Register/Customer/Customer'
+import Seller from './container/Register/Seller/Seller'
+import ForgotPassword from './container/ForgotPassword/ForgotPassword'
 import Home from './container/HomePage/HomePage'
 import ProductDetail from './container/ProductDetail/ProductDetail'
 import ProductListing from './container/ProductListing/ProductListing'
 import Cart from './container/Cart/Cart'
-import ResetPassword from './container/Authentication/ForgotPassword/ResetPassword/ResetPassword';
+import ResetPassword from './container/ForgotPassword/ResetPassword/ResetPassword'
 import Profile from './container/Profile/Profile';
 import './App.css';
 

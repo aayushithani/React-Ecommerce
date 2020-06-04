@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import classes from "./Seller.module.css";
 import { NavLink } from "react-router-dom";
+import { responseMapper } from "./helper";
+import {Validations} from '../../../Validations/Validations';
 import axios from "axios";
 
 class Seller extends Component {
@@ -15,16 +17,12 @@ class Seller extends Component {
       gst: "",
       companyContact: "",
       companyName: "",
-      addresses: [
-        {
-          city: "",
-          state: "",
-          country: "",
-          addressLine: "",
-          zipCode: "",
-          label: "Office",
-        },
-      ],
+      city: "",
+      state: "",
+      country: "",
+      addressLine: "",
+      zipCode: "",
+      label: "Office",
     },
     errors: {
       email: null,
@@ -36,91 +34,20 @@ class Seller extends Component {
       gst: null,
       companyContact: null,
       companyName: null,
-      addresses: [
-        {
-          city: null,
-          state: null,
-          country: null,
-          addressLine: null,
-          zipCode: null,
-          label: null,
-        },
-      ],
+      city: null,
+      state: null,
+      country: null,
+      addressLine: null,
+      zipCode: null,
+      label: null,
     },
+    error:null
   };
 
   onChangeHandler = (event) => {
-    const { name, value } = event.target;
     let errors = this.state.errors;
-    const validEmailRegex = RegExp(
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-    );
-    const validPasswordRegex = RegExp(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,15}$/i
-    );
-    const validContactRegex = RegExp(
-      /^(?:\s+|)((0|(?:(\+|)91))(?:\s|-)*(?:(?:\d(?:\s|-)*\d{9})|(?:\d{2}(?:\s|-)*\d{8})|(?:\d{3}(?:\s|-)*\d{7}))|\d{10})(?:\s+|)$/i
-    );
-    const validGstRegex = RegExp(
-      /^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/i
-    );
-
-    switch (name) {
-      case "firstName":
-        errors.firstName = value.length < 2 ? "This is a required Field!" : "";
-        break;
-      case "lastName":
-        errors.lastName = value.length < 2 ? "This is a required Field!" : "";
-        break;
-      case "email":
-        errors.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
-        break;
-      case "password":
-        errors.password = validPasswordRegex.test(value)
-          ? ""
-          : "Password is not valid!";
-        break;
-      case "confirmPassword":
-        errors.confirmPassword = validPasswordRegex.test(value)
-          ? ""
-          : "Password and Confirm Password Should Match!";
-        break;
-      case "companyContact":
-        errors.companyContact = validContactRegex.test(value)
-          ? ""
-          : "Contact No. is not valid!";
-        break;
-      case "gst":
-        errors.gst = validGstRegex.test(value) ? "" : "GST No. is not valid!";
-        break;
-      case "companyName":
-        errors.companyName =
-          value.length < 2 ? "This is a required Field!" : "";
-        break;
-      case "city":
-        errors.city = value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "state":
-        errors.state = value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "country":
-        errors.country = value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "addressLine":
-        errors.addressLine =
-          value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "zipCode":
-        errors.zipCode = value.length < 6 ? "Zip-Code is not valid!" : "";
-        break;
-      default:
-        break;
-    }
-
+    Validations(event,errors);
+   
     const updatedUser = {
       ...this.state.user,
       [event.target.name]: event.target.value,
@@ -129,68 +56,27 @@ class Seller extends Component {
       errors: errors,
       user: updatedUser,
     });
-    console.log(this.state.user)
   };
 
-  onChangeAddressHandler = (event) => {
-    const { name, value } = event.target;
-    let errors = this.state.errors;
-    switch (name) {
-      case "city":
-        errors.city = value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "state":
-        errors.state = value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "country":
-        errors.country = value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "addressLine":
-        errors.addressLine =
-          value.length < 2 ? "This is a required Field!" : "";
-        break;
-
-      case "zipCode":
-        errors.zipCode = value.length < 6 ? "Zip-Code is not valid!" : "";
-        break;
-      default:
-        break;
-    }
-
-    const updatedAddress = {
-      ...this.state.user.addresses,
-      [event.target.name]: event.target.value,
-    };
-    this.setState({
-      ...this.state.user,
-      user: {
-        ...this.state.user.addresses,
-        addresses : updatedAddress
-      }
-    })
-    console.log(this.state.user.addresses);
-    console.log(this.state.user);
-  }
-
-  submitHandler = (e) => {
-    if(this.state.user.password !== this.state.user.confirmPassword) {
+  onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (this.state.user.password !== this.state.user.confirmPassword) {
       return this.setState({
         ...this.state.errors,
-        confirmPassword: 'Password And Confirm Password Do Not Match!'
-      })
-    }
-    e.preventDefault();
-    console.log(this.state.user);
-
-    axios
-      .post("/users/sellers-registration", this.state.user)
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
+        confirmPassword: "Password And Confirm Password Do Not Match!",
       });
+    }
+    const payload = responseMapper(this.state.user);
+    axios.post("/users/sellers-registration", payload).then((response) => {
+      alert("Registered Successfully, Waiting for Admin Approval!");
+    }).catch((error)  => {
+      console.log(error.response.data.message)
+      if (error.response.data.message) {
+        this.setState({
+          error : error.response.data.message
+        })
+      }
+    });
   };
 
   render() {
@@ -204,22 +90,19 @@ class Seller extends Component {
       gst,
       companyContact,
       companyName,
-    } = this.state.user;
-
-    const {
       city,
       state,
       country,
       addressLine,
       zipCode,
-    } = this.state.user.addresses;
+    } = this.state.user;
 
     return (
       <div className={classes.Seller}>
         <div className={classes.wrapper}>
           <div className={classes.formWrapper}>
             <h1>Create Account</h1>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.onSubmitHandler}>
               <div className={classes.firstName}>
                 <label htmlFor="firstName">First Name</label>
                 <input
@@ -311,7 +194,6 @@ class Seller extends Component {
                   </label>
                 )}
               </div>
-
               <div className={classes.companyName}>
                 <label htmlFor="companyName">Company Name</label>
                 <input
@@ -360,8 +242,6 @@ class Seller extends Component {
                   </label>
                 )}
               </div>
-
-              {/* ..................................... */}
               <div className={classes.city}>
                 <label htmlFor="city">City</label>
                 <input
@@ -370,7 +250,7 @@ class Seller extends Component {
                   type="text"
                   name="city"
                   value={city}
-                  onChange={this.onChangeAddressHandler}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.city && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -386,7 +266,7 @@ class Seller extends Component {
                   type="text"
                   name="state"
                   value={state}
-                  onChange={this.onChangeAddressHandler}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.state && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -402,7 +282,7 @@ class Seller extends Component {
                   type="text"
                   name="country"
                   value={country}
-                  onChange={this.onChangeAddressHandler}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.country && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -410,9 +290,6 @@ class Seller extends Component {
                   </label>
                 )}
               </div>
-
-              {/* ..................................... */}
-
               <div className={classes.addressLine}>
                 <label htmlFor="addressLine">Address Line</label>
                 <input
@@ -421,7 +298,7 @@ class Seller extends Component {
                   type="text"
                   name="addressLine"
                   value={addressLine}
-                  onChange={this.onChangeAddressHandler}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.addressLine && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -437,7 +314,7 @@ class Seller extends Component {
                   type="text"
                   name="zipCode"
                   value={zipCode}
-                  onChange={this.onChangeAddressHandler}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.zipCode && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -445,7 +322,11 @@ class Seller extends Component {
                   </label>
                 )}
               </div>
-              {/* -------------------------------------------- */}
+              {this.state.error && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.error}
+                  </label>
+                )}
               <div className={classes.createAccount}>
                 <button type="submit">Create Account</button>
                 <NavLink to="/login">

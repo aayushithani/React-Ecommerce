@@ -3,7 +3,6 @@ import {
   Container,
   Row,
   Col,
-  Form,
   InputGroup,
   FormControl,
 } from "react-bootstrap";
@@ -15,7 +14,7 @@ import { connect } from "react-redux";
 
 class ProductDetail extends Component {
   state = {
-    ProductVariation: {},
+    ProductVariation: [],
   };
 
   componentDidMount() {
@@ -28,34 +27,30 @@ class ProductDetail extends Component {
         this.setState({
           ProductVariation: updatedProductVariation,
         });
-      })
-      .catch((error) => {
-        console.log(error.response);
-        console.log(error.response.data.message);
       });
   }
 
   onClickHandler = () => {
     if(!this.props.isAuthenticated){
-      console.log(this.props.history)
-      // alert("Please LogIn!",this.props.history);
+      // console.log(this.props.history)
+      alert("Please Login To View Cart!");
       this.props.history.push("/login");
     }
     else{
-      console.log("Product detail state:", this.state.ProductVariation);
-      console.log("product detail token:", this.props.token);
-      this.props.onOrderProduct(this.state.ProductVariation);
-      this.props.history.push("/cart");
+      // console.log("Product detail state:", this.state.ProductVariation);
+      // console.log("product detail token:", this.props.isAuthenticated);
+      // console.log("Product Detail onAddToCart:",this.state.ProductVariation.ProductVariationID);
+      // console.log("PRODUCT DETAILS: ",this.state.ProductVariation)
+      this.props.onAddToCart(this.state.ProductVariation);
+      // this.props.history.push("/cart");
     }
   };
 
   render() {
-    console.log(this.state.ProductVariation);
-    // console.log(this.state.ProductVariation.ProductName);
+    // console.log(this.state.ProductVariation);
     return (
       <div>
         <Container className={classes.ProductDetail}>
-          {/* -------------------------------ROW 1------------------------------------------------------- */}
           <Row className={classes.Row}>
             <Col className={classes.Col}>
               <div className={classes.ProductName}>
@@ -65,8 +60,6 @@ class ProductDetail extends Component {
               </div>
             </Col>
           </Row>
-          {/* -------------------------------ROW 2------------------------------------------------------ */}
-          {/* PRODUCT IMAGE ---  COL 1*/}
           <Row className={classes.Row}>
             <Col sm={4} className={classes.Col}>
               <div className={classes.MainProductImg}>
@@ -78,7 +71,6 @@ class ProductDetail extends Component {
                 />
               </div>
             </Col>
-            {/* PRODUCT Price ---  COL 2*/}
             <Col sm={5} className={classes.Col}>
               <div>
                 <h3>
@@ -102,7 +94,6 @@ class ProductDetail extends Component {
                 </p>
               </div>
             </Col>
-            {/*Buy now------------COL 3*/}
             <Col sm={3} className={classes.ProductBuyNow}>
               <div className={classes.ProductPrice}>
                 <Container fluid="md">
@@ -114,34 +105,14 @@ class ProductDetail extends Component {
                         borderRadius: "3px",
                       }}
                     >
-                      <Form className={classes.FormGroup}>
-                        <Form.Group controlId="exampleForm.SelectCustomSizeSm">
-                          <Form.Label style={{ margin: "10px" }}>
-                            Quantity
-                          </Form.Label>
-                          <Form.Control
-                            as="select"
-                            size="sm"
-                            custom
-                            className={classes.Quantity}
-                          >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </Form.Control>
-                        </Form.Group>
-                      </Form>
+                      
                       <div>
-                        {/* <NavLink to="/cart"> */}
                           <button
                             type="submit"
                             onClick={this.onClickHandler}
                           >
                             Add To Cart
                           </button>
-                        {/* </NavLink> */}
                         <button type="submit">Buy Now</button>
                         <button type="submit">Add To WishList</button>
                       </div>
@@ -177,8 +148,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderProduct: (orderData) =>
-      dispatch(actions.purchaseProduct(orderData)),
+    onAddToCart: (item) =>
+      dispatch(actions.addToCart(item)),
   };
 };
 

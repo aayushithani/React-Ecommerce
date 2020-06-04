@@ -9,16 +9,14 @@ import thunk from 'redux-thunk';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import LoginReducer from './store/reducer/login';
-import purchaseProductReducer from './store/reducer/purchaseProduct';
-import forgotPasswordReducer from './store/reducer/forgotPassword';
+import CartReducer from './store/reducer/cart';
 // import setAuthorizationToken from "./container/Authentication/setAuthorizationToken";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   login: LoginReducer,
-  purchaseProduct: purchaseProductReducer,
-  forgotPassword: forgotPasswordReducer
+  cart: CartReducer
 });
 
 const store = createStore(rootReducer,composeEnhancers(

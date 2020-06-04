@@ -1,3 +1,8 @@
+.UserDetails{
+  background-color: white;
+  padding: 5px;
+}
+
 .UserDetails form {
     width: 100%;
     display: flex;

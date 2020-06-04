@@ -1,5 +1,5 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const CART_ADD ='CART_ADD';
 
-export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const CART_DELETE='CART_DELETE';

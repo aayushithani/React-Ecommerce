@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import classes from "./ResetPassword.module.css";
-import { connect } from "react-redux";
 import axios from "axios";
 import { withRouter } from "react-router";
 import queryString from "query-string";
@@ -138,10 +137,6 @@ class ResetPassword extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.forgotPassword.token,
-  };
-};
 
-export default connect(mapStateToProps, null)(withRouter(ResetPassword));
+
+export default (withRouter(ResetPassword));

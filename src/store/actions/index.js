@@ -3,10 +3,7 @@ export {
 } from './login';
 
 export {
-    purchaseProduct
-} from './purchaseProduct';
+    deleteFromCart ,
+    addToCart
+} from './cart';
 
-
-export {
-    forgotPassword
-} from './forgotPassword';

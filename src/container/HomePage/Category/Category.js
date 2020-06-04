@@ -12,20 +12,16 @@ class Category extends Component {
     axios
       .get(`/users/categories`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const updatedCatgory = response.data;
         this.setState({
           category: updatedCatgory,
         });
-      })
-      .catch((error) => {
-        console.log(error.response);
-        console.log(error.response.data.message);
       });
   }
 
   render() {
-    console.log(this.state.category);
+    // console.log(this.state.category);
     
     return (
       <div className="">

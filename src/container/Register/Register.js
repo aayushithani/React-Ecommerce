@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "../../Authentication/Register/Register.module.css";
+import classes from './Register.module.css'
 import { NavLink } from "react-router-dom";
 
 class Register extends Component {

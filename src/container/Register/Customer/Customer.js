@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Customer.module.css";
 import { NavLink } from "react-router-dom";
+import {Validations} from '../../../Validations/Validations';
 import axios from "axios";
 
 class Customer extends Component {
@@ -27,46 +28,8 @@ class Customer extends Component {
   };
 
   onChangeHandler = (event) => {
-    const { name, value } = event.target;
     let validations = this.state.validations;
-    const validEmailRegex = RegExp(
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-    );
-    const validPasswordRegex = RegExp(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,15}$/i
-    );
-    const validContactRegex = RegExp(
-      /^(?:\s+|)((0|(?:(\+|)91))(?:\s|-)*(?:(?:\d(?:\s|-)*\d{9})|(?:\d{2}(?:\s|-)*\d{8})|(?:\d{3}(?:\s|-)*\d{7}))|\d{10})(?:\s+|)$/i
-    );
-
-    switch (name) {
-      case "firstName":
-        validations.firstName = value.length < 1 ? "This is a required Field!" : "";
-        break;
-      case "lastName":
-        validations.lastName = value.length < 1 ? "This is a required Field!" : "";
-        break;
-      case "email":
-        validations.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
-        break;
-      case "password":
-        validations.password = validPasswordRegex.test(value)
-          ? ""
-          : "Password is not valid!";
-        break;
-      case "confirmPassword":
-        validations.confirmPassword = validPasswordRegex.test(value)
-            ? ""
-            : "Password is not valid!";
-        break;
-      case "contact":
-        validations.contact = validContactRegex.test(value)
-          ? ""
-          : "Contact No. is not valid!";
-        break;
-      default:
-        break;
-    }
+    Validations(event,validations);
 
     const updatedUser = {
       ...this.state.user,
@@ -200,7 +163,7 @@ class Customer extends Component {
                 <input
                   className={classes.confirmPassword}
                   placeholder="Confirm Password"
-                  type="confirmPassword"
+                  type="password"
                   name="confirmPassword"
                   value={confirmPassword}
                   onChange={this.onChangeHandler}
