@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import { Container, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import classes from "./ProductDetail.module.css";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
@@ -19,35 +13,32 @@ class ProductDetail extends Component {
 
   componentDidMount() {
     const { productVariationId } = this.props.match.params;
-
+    console.log(productVariationId);
     axios
       .get(`/users/products/${productVariationId}`)
       .then((response) => {
         const updatedProductVariation = response.data[0];
+        console.log("RESPONSE", response.data[0]);
         this.setState({
           ProductVariation: updatedProductVariation,
         });
+      })
+      .catch((error) => {
+        console.log(error);
       });
+    console.log(this.state);
   }
 
   onClickHandler = () => {
-    if(!this.props.isAuthenticated){
-      // console.log(this.props.history)
+    if (!this.props.isAuthenticated) {
       alert("Please Login To View Cart!");
       this.props.history.push("/login");
-    }
-    else{
-      // console.log("Product detail state:", this.state.ProductVariation);
-      // console.log("product detail token:", this.props.isAuthenticated);
-      // console.log("Product Detail onAddToCart:",this.state.ProductVariation.ProductVariationID);
-      // console.log("PRODUCT DETAILS: ",this.state.ProductVariation)
+    } else {
       this.props.onAddToCart(this.state.ProductVariation);
-      // this.props.history.push("/cart");
     }
   };
 
   render() {
-    // console.log(this.state.ProductVariation);
     return (
       <div>
         <Container className={classes.ProductDetail}>
@@ -94,45 +85,47 @@ class ProductDetail extends Component {
                 </p>
               </div>
             </Col>
-            <Col sm={3} className={classes.ProductBuyNow}>
-              <div className={classes.ProductPrice}>
-                <Container fluid="md">
-                  <Row className={classes.ProductPriceRow}>
-                    <Col
-                      className={classes.ProductBuyNow}
-                      style={{
-                        border: "1px solid #EAEDED",
-                        borderRadius: "3px",
-                      }}
-                    >
-                      
-                      <div>
-                          <button
-                            type="submit"
-                            onClick={this.onClickHandler}
-                          >
+            {this.props.authority === "ROLE_ADMIN" ? null : (
+              <Col sm={3} className={classes.ProductBuyNow}>
+                <div className={classes.ProductPrice}>
+                  <Container fluid="md">
+                    <Row className={classes.ProductPriceRow}>
+                      <Col
+                        className={classes.ProductBuyNow}
+                        style={{
+                          border: "1px solid #EAEDED",
+                          borderRadius: "3px",
+                        }}
+                      >
+                        <div>
+                          <button type="submit" onClick={this.onClickHandler}>
                             Add To Cart
                           </button>
-                        <button type="submit">Buy Now</button>
-                        <button type="submit">Add To WishList</button>
-                      </div>
-                      <InputGroup
-                        className="mb-3"
-                        style={{ margin: "10px 10px 10px 0px", width: "100%" }}
-                      >
-                        <InputGroup.Prepend>
-                          <InputGroup.Checkbox aria-label="Checkbox for following text input" />
-                        </InputGroup.Prepend>
-                        <FormControl
-                          aria-label="Text input with checkbox"
-                          defaultValue="Add gift options"
-                        />
-                      </InputGroup>
-                    </Col>
-                  </Row>
-                </Container>
-              </div>
-            </Col>
+                          <button type="submit">Buy Now</button>
+                          <button type="submit">Add To WishList</button>
+                        </div>
+
+                        <InputGroup
+                          className="mb-3"
+                          style={{
+                            margin: "10px 10px 10px 0px",
+                            width: "100%",
+                          }}
+                        >
+                          <InputGroup.Prepend>
+                            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+                          </InputGroup.Prepend>
+                          <FormControl
+                            aria-label="Text input with checkbox"
+                            defaultValue="Add gift options"
+                          />
+                        </InputGroup>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+              </Col>
+            )}
           </Row>
         </Container>
       </div>
@@ -143,17 +136,16 @@ class ProductDetail extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.login.isAuthenticated,
+    authority: state.login.authority,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddToCart: (item) =>
-      dispatch(actions.addToCart(item)),
+    onAddToCart: (item) => dispatch(actions.addToCart(item)),
   };
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductDetail));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductDetail)
+);

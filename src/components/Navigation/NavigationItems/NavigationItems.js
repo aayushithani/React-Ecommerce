@@ -54,7 +54,13 @@ class Navigation extends Component {
               <NavLink to="/homePage">Home</NavLink>
             </li>
             <li className={classes.NavigationItem}>
-              <NavLink to="/adminProfile">ADMIN</NavLink>
+              <NavLink to="/admin/Profile">Users</NavLink>
+            </li>
+            <li className={classes.NavigationItem}>
+              <NavLink to="/admin/Products">Products</NavLink>
+            </li>
+            <li className={classes.NavigationItem}>
+              <NavLink to="/admin/Category">Category</NavLink>
             </li>
           </ul>
         ) : null}

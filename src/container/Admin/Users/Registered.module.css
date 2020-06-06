@@ -1,0 +1,135 @@
+.Registered {
+    width: 100%;
+    height: auto;
+    margin-top: 2%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.Registered .Container{
+  margin: 0px;
+  margin-bottom: 7px;
+}
+
+.Registered .Row{
+    height: auto;
+    background-color: #EAEDED;
+    border-radius: 5px;
+}
+
+.Registered .Col{
+    font-family: 'Lato' sans-serif;
+    padding:10px
+}
+
+
+  .Registered form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Registered h1 {
+      text-align: center;
+      width: 100%;
+      color: #111;
+      font-size: 1.7em;
+      font-weight: lighter;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    
+
+  .Registered label {
+    font-size: 0.8em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+  }
+  
+  .Registered input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    height: 25px;
+  }
+  
+  .Registered input::placeholder {
+    font-size: 0.8em;
+    font-weight: lighter;
+    color: #999;
+  }
+  
+
+  .Registered .firstName,
+  .Registered .companyContact {
+    margin-right: 1%;
+  }
+
+  .Registered .middleName
+  .Registered .companyName,  
+  .Registered .lastName{
+      margin-left: 1%;
+  }
+
+
+  .Registered .firstName,
+  .Registered .lastName,
+  .Registered .middleName,
+  .Registered .contact,
+  .Registered .companyContact,
+  .Registered .gst,
+  .Registered .companyName,
+  .Registered .IsActive{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  
+  .Registered .firstName,
+  .Registered .lastName,
+  .Registered .middleName,
+  .Registered .companyContact,
+  .Registered .gst,
+  .Registered .companyName{
+    width: 160px;
+    /* width: 49%; */
+  }
+
+  
+  
+  .Registered .contact,
+  .Registered .email,
+  .Registered .IsActive{
+    width: 100%;
+  }
+
+  .Registered .DeactivateButton{
+      background-color:red;
+      color: white;
+      border: 2px solid white;
+      padding:10px;
+      margin:2px
+  }
+
+  .Registered .DeactivateButton:hover{
+    background-color:white;
+    color: red;
+    border: 2px solid red;
+}
+
+.Registered .ActivateButton{
+    background-color:green;
+    color: white;
+    border: 2px solid white;
+    padding:10px;
+    margin:2px
+}
+
+.Registered .ActivateButton:hover{
+  background-color:white;
+  color: green;
+  border: 2px solid green;
+}

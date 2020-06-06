@@ -11,12 +11,16 @@ import Home from "./container/HomePage/HomePage";
 import ProductDetail from "./container/ProductDetail/ProductDetail";
 import ProductListing from "./container/ProductListing/ProductListing";
 import Cart from "./container/Cart/Cart";
-import AdminProfile from "./container/Admin/AdminProfile";
+import AdminProfile from "./container/Admin/Users/RegisteredUsers";
 import SellerProfile from "./container/Profile/SellerProfile/SellerProfile";
 import ResetPassword from "./container/ForgotPassword/ResetPassword/ResetPassword";
 import CustomerProfile from './container/Profile/CustomerProfile/CustomerProfile';
 import AccountActivation from './container/Register/Customer/AccountActivation';
 import ResendActivationLink from './container/Register/Customer/ResendActivationLink';
+import ProductList from './container/Admin/Products/ProductList';
+import ProductVariation from './container/Admin/Products/ProductVariations';
+import Category from './container/Admin/Category/Category';
+import SubCategoryList from './container/Admin/Category/CategoryList/SubCategory/SubCategoryList';
 import "./App.css";
 
 import { connect } from "react-redux";
@@ -70,7 +74,25 @@ const App = (props) => {
     </Switch>
   ) : (
     <Switch>
-      <Route path="/adminProfile" exact component={AdminProfile} />
+      <Route path="/admin/Profile" exact component={AdminProfile} />
+      <Route path="/admin/Category" exact component={Category} />
+      <Route path="/admin/Products" exact component={ProductList} />
+      <Route path="/productVariation/:productId" exact component={ProductVariation}/>
+      <Route
+        path="/productDetail/:productVariationId"
+        exact
+        component={ProductDetail}
+      />
+      <Route
+        path="/SubCategory/:categoryId"
+        exact
+        component={SubCategoryList}
+      />
+        <Route
+        path="/productListing/:categoryId"
+        exact
+        component={ProductListing}
+      />
       <Route path="/" exact component={Home} />
       <Redirect to="/" />
     </Switch>
