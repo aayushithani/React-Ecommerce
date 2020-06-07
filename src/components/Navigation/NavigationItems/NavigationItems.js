@@ -46,6 +46,9 @@ class Navigation extends Component {
               <NavLink to="/">Products</NavLink>
             </li>
             <li className={classes.NavigationItem}>
+              <NavLink to="/seller/category">Categories</NavLink>
+            </li>
+            <li className={classes.NavigationItem}>
               <NavLink to="/logout">Logout</NavLink>
             </li>
           </ul>

@@ -57,10 +57,9 @@ class Customer extends Component {
         console.log(response.data);
         alert("Registered Successfully! The Activation Link Has Been Sent to your EmailID.");
       }).catch((error)  => {
-        const ValidationError = `${error.response.data.message} \n ${error.response.data.details} `
         if (error.response.data.message) {
           this.setState({
-            error : ValidationError
+            error : error.response.data.message
           })
         }
       });

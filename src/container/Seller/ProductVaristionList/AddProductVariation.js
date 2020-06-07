@@ -75,7 +75,7 @@ export class AddProductVariation extends Component {
                     <label htmlFor="quantityAvailable">Quantity Available</label>
                     <input
                       className={classes.name}
-                      placeholder="Category Name"
+                      placeholder="Quantity Available"
                       type="text"
                       name="quantityAvailable"
                       onChange={this.onChangeHandler}
@@ -85,7 +85,7 @@ export class AddProductVariation extends Component {
                     <label htmlFor="price">Price</label>
                     <input
                       className={classes.name}
-                      placeholder="Category Name"
+                      placeholder="Price"
                       type="text"
                       name="price"
                       onChange={this.onChangeHandler}

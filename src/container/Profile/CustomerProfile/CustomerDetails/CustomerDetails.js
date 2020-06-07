@@ -22,7 +22,7 @@ class CustomerDetails extends Component {
     edit: true,
     update: false,
     disabled: true,
-    error: [],
+    error: null,
   };
 
   componentDidMount() {

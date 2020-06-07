@@ -25,6 +25,7 @@ import SellerProductList from "./container/Seller/Products/ProductList";
 import SellerProfile from './container/Profile/SellerProfile/SellerProfile';
 import ProductVariationList from './container/Seller/ProductVaristionList/ProductVariationList';
 import ProductMenu from './container/Seller/ProductsMenu';
+import SellerCategoryList from './container/Seller/Category/CategoryList';
 import "./App.css";
 
 import { connect } from "react-redux";
@@ -90,6 +91,7 @@ const App = (props) => {
       <Route path="/seller/Profile" exact component={SellerProfile} />
       <Route path="/sellers/products/:productId/variations" exact component={ProductVariationList} />
       <Route path="/seller/products" exact component={SellerProductList} />
+      <Route path="/seller/category" exact component={SellerCategoryList} />
       <Route path="/" exact component={ProductMenu} />
       <Redirect to="/" />
     </Switch>

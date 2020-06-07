@@ -79,11 +79,10 @@ class Product extends Component {
         alert("Product Updated Successfully!");
       })
       .catch((error) => {
-        console.log(error.response);
-        console.log(error.response.data.message);
+        console.log(error.response.statusText);
         if (error.response.data.message) {
           this.setState({
-            error: error.response.data.message,
+            error: error.response.statusText,
           });
         }
       });
@@ -164,6 +163,11 @@ class Product extends Component {
                 />
               </div>
             </div>
+                    {this.state.error && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.error}
+                  </label>
+                )}
             <div style={{ textAlign: "center", margin: "5px" }}>
               {this.state.is_active ? (
                 <h5 style={{ color: "green" }}>Product is Active</h5>

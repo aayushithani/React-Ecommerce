@@ -105,7 +105,7 @@ class ResetPassword extends Component {
                 <input
                   className={classes.confirmPassword}
                   placeholder="Confirm Password"
-                  type="confirmPassword"
+                  type="password"
                   name="confirmPassword"
                   value={confirmPassword}
                   onChange={this.onChangeHandler}

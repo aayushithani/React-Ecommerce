@@ -15,7 +15,7 @@ export const Validations = (event, errors) => {
   const { name, value } = event.target;
   switch (name) {
     case "firstName":
-      errors.firstName = value.length < 2 ? "This is a required Field!" : "";
+      errors.firstName = value.length === 0 ? "This is a required Field!" : "";
       break;
     case "lastName":
       errors.lastName = value.length === 0 ? "This is a required Field!" : "";

@@ -40,7 +40,7 @@ class ProductList extends Component {
                   <NavLink to={`/productDetail/${eachitem.productVariationID}`}>
                     <Card.Img
                       variant="top"
-                      // src={eachitem.Image}
+                      src={eachitem.Image}
                       className={classes.CardImg}
                     />
                   </NavLink>

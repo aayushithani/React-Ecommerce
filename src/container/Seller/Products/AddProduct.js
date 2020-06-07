@@ -73,17 +73,17 @@ export class AddProduct extends Component {
                     <label htmlFor="brand">Brand</label>
                     <input
                       className={classes.name}
-                      placeholder="Category Name"
+                      placeholder="Brand"
                       type="text"
                       name="brand"
                       onChange={this.onChangeHandler}
                     />
                   </div>
                   <div className={classes.name}>
-                    <label htmlFor="category">Brand</label>
+                    <label htmlFor="category">Category ID</label>
                     <input
                       className={classes.name}
-                      placeholder="Category Name"
+                      placeholder="Category ID"
                       type="text"
                       name="category"
                       onChange={this.onChangeHandler}
@@ -103,7 +103,7 @@ export class AddProduct extends Component {
                     <label htmlFor="cancellable">Cancellable</label>
                     <input
                       className={classes.name}
-                      placeholder="Category Name"
+                      placeholder="Cancellable - True/False"
                       type="text"
                       name="isCancellable"
                       onChange={this.onChangeHandler}
@@ -113,7 +113,7 @@ export class AddProduct extends Component {
                     <label htmlFor="returnable">Returnable</label>
                     <input
                       className={classes.name}
-                      placeholder="Category Name"
+                      placeholder="Returnable - True/False"
                       type="text"
                       name="isReturnable"
                       onChange={this.onChangeHandler}

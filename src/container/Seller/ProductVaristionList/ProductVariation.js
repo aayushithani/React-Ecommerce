@@ -46,7 +46,7 @@ class ProductVariation extends Component {
         alert("Product Variation Updated Successfully!");
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error.response.statusText);
         console.log(error.response.data.message);
         if (error.response.data.message) {
           this.setState({
@@ -84,7 +84,7 @@ class ProductVariation extends Component {
                   name="ProductName"
                   value={this.state.ProductName}
                   onChange={this.onChangeHandler}
-                  disabled={this.state.disabled ? true : null}
+                  disabled
                 />
               </div>
               <div className={classes.name}>
@@ -96,7 +96,7 @@ class ProductVariation extends Component {
                   name="brand"
                   value={this.state.brand}
                   onChange={this.onChangeHandler}
-                  disabled={this.state.disabled ? true : null}
+                  disabled
                 />
               </div>
               <div className={classes.name}>
@@ -124,6 +124,11 @@ class ProductVariation extends Component {
                 />
               </div>
             </div>
+            {this.state.error && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.error}
+                  </label>
+                )}
           </Card.Body>
 
           <div className={classes.ButtonList}>

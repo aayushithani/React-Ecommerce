@@ -39,26 +39,33 @@ class Address extends Component {
         },
       })
       .then((response) => {
+        console.log(response.data);
+        console.log(response.data.data);
         this.setState({
-          ...this.state,
-          ...response.data.data,
+          ...this.state.address,
+          address: response.data.data,
         });
       })
       .catch((error) => {
         console.log(error.message);
       });
-    console.log(this.state);
+    console.log(this.state.address);
   }
+
 
   onChangeHandler = (event) => {
     let errors = this.state.errors;
     Validations(event, errors);
-    this.setState({
-      ...this.state,
+    const updatedAddress = {
+      ...this.state.address,
       [event.target.name]: event.target.value,
+    };
+    this.setState({
       errors: errors,
+      address: updatedAddress,
     });
   };
+
 
   onEditHandler = (e) => {
     this.setState({
@@ -72,12 +79,12 @@ class Address extends Component {
 
   onUpdateHandler = () => {
     const RequestBody = {
-      city: this.state.city,
-      state: this.state.state,
-      country: this.state.country,
-      addressLine: this.state.address_line,
-      zipCode: this.state.zip_code,
-      label: this.state.label,
+      city: this.state.address.city,
+      state: this.state.address.state,
+      country: this.state.address.country,
+      addressLine: this.state.address.addressLine,
+      zipCode: this.state.address.zipCode,
+      label: this.state.address.label,
     };
     axios({
       method: "patch",
@@ -88,16 +95,13 @@ class Address extends Component {
       },
     })
       .then((response) => {
-        this.setState({
-          ...this.state,
-          disabled: true,
-        });
         alert("Address Changed Successfully!");
       })
       .catch((error) => {
+        console.log(error.response.data.details);
         if (error.response.data.message) {
           this.setState({
-            error: error.response.data.data,
+            error: error.response.data.details,
           });
         }
       });
@@ -110,6 +114,7 @@ class Address extends Component {
   };
 
   render() {
+    console.log(this.state.address);
     return (
       <div className={classes.Address}>
         <Container className={classes.Container}>
@@ -124,7 +129,7 @@ class Address extends Component {
                     placeholder="Address Line"
                     type="text"
                     name="addressLine"
-                    value={this.state.addressLine}
+                    value={this.state.address.addressLine}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
@@ -141,7 +146,7 @@ class Address extends Component {
                     placeholder="Zip Code"
                     type="text"
                     name="zipCode"
-                    defaultValue={this.state.zipCode}
+                    defaultValue={this.state.address.zipCode}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
@@ -158,7 +163,7 @@ class Address extends Component {
                     placeholder="City"
                     type="text"
                     name="city"
-                    defaultValue={this.state.city}
+                    defaultValue={this.state.address.city}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
@@ -175,7 +180,7 @@ class Address extends Component {
                     placeholder="State"
                     type="text"
                     name="state"
-                    defaultValue={this.state.state}
+                    defaultValue={this.state.address.state}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
@@ -192,7 +197,7 @@ class Address extends Component {
                     placeholder="Country"
                     type="text"
                     name="country"
-                    defaultValue={this.state.country}
+                    defaultValue={this.state.address.country}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
@@ -209,7 +214,7 @@ class Address extends Component {
                     placeholder="label"
                     type="text"
                     name="label"
-                    defaultValue={this.state.label}
+                    defaultValue={this.state.address.label}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
