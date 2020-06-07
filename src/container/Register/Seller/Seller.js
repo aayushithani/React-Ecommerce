@@ -2,31 +2,28 @@ import React, { Component } from "react";
 import classes from "./Seller.module.css";
 import { NavLink } from "react-router-dom";
 import { responseMapper } from "./helper";
-import {Validations} from '../../../Validations/Validations';
+import { Validations } from "../../../Validations/Validations";
 import axios from "axios";
 
 class Seller extends Component {
   state = {
     user: {
-    email: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    password: "",
-    confirmPassword: "",
-    gst: "",
-    companyContact: "",
-    companyName: "",
-    addresses: [
-        {
-          city: "",
-            state: "",
-            country: "",
-            addressLine: "",
-            zipCode: "",
-            label: "Home"
-        }
-    ]},
+      email: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      password: "",
+      confirmPassword: "",
+      gst: "",
+      companyContact: "",
+      companyName: "",
+      city: "",
+      state: "",
+      country: "",
+      addressLine: "",
+      zipCode: "",
+      label: "Home",
+    },
     errors: {
       email: null,
       firstName: null,
@@ -44,43 +41,23 @@ class Seller extends Component {
       zipCode: null,
       label: null,
     },
-    error:null
+    error: null,
   };
 
-  onChangeHandler = (event) => {
+    onChangeHandler = (event) => {
     let errors = this.state.errors;
-    Validations(event,errors);
-    this.setState ({
+    Validations(event, errors);
+    this.setState({
       ...this.state,
       user: {
         ...this.state.user,
         [event.target.name]: event.target.value,
-        addresses : {
-          ...this.state.user.addresses,
-        }
-      }
-    });
-    console.log(this.state.user);
-  };
-
-  onChangeHandlerAddress = (event) => {
-    let errors = this.state.errors;
-    Validations(event,errors);
-    this.setState ({
-      ...this.state,
-      user: {
-        ...this.state.user,
-        addresses : [{
-          ...this.state.user.addresses[0],
-          [event.target.name]: event.target.value,
-        }]
-      }
+      },
     });
     console.log(this.state.user);
   };
 
   onSubmitHandler = (e) => {
-
     e.preventDefault();
     if (this.state.user.password !== this.state.user.confirmPassword) {
       return this.setState({
@@ -90,22 +67,22 @@ class Seller extends Component {
     }
     const payload = responseMapper(this.state.user);
     console.log(payload);
-     axios
-      .post("/users/sellers-registration", this.state.user)
+    axios
+      .post("/users/sellers-registration", payload)
       .then((response) => {
         console.log(response);
         console.log(response.data);
         alert("Registered Successfully! Waiting for Admin's Approval.");
-      }).catch((error)  => {
+      })
+      .catch((error) => {
         console.log(error.response);
         console.log(error.response.data.details);
         if (error.response.data.message) {
           this.setState({
-            error : error.response.data.details
-          })
+            error: error.response.data.details,
+          });
         }
       });
-
   };
 
   render() {
@@ -279,7 +256,7 @@ class Seller extends Component {
                   type="text"
                   name="city"
                   value={city}
-                  onChange={this.onChangeHandlerAddress}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.city && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -295,7 +272,7 @@ class Seller extends Component {
                   type="text"
                   name="state"
                   value={state}
-                  onChange={this.onChangeHandlerAddress}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.state && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -311,7 +288,7 @@ class Seller extends Component {
                   type="text"
                   name="country"
                   value={country}
-                  onChange={this.onChangeHandlerAddress}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.country && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -327,7 +304,7 @@ class Seller extends Component {
                   type="text"
                   name="addressLine"
                   value={addressLine}
-                  onChange={this.onChangeHandlerAddress}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.addressLine && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -343,7 +320,7 @@ class Seller extends Component {
                   type="text"
                   name="zipCode"
                   value={zipCode}
-                  onChange={this.onChangeHandlerAddress}
+                  onChange={this.onChangeHandler}
                 />
                 {this.state.errors.zipCode && (
                   <label htmlFor="Error" style={{ color: "red" }}>
@@ -352,10 +329,10 @@ class Seller extends Component {
                 )}
               </div>
               {this.state.error && (
-                  <label htmlFor="Error" style={{ color: "red" }}>
-                    {this.state.error}
-                  </label>
-                )}
+                <label htmlFor="Error" style={{ color: "red" }}>
+                  {this.state.error}
+                </label>
+              )}
               <div className={classes.createAccount}>
                 <button type="submit">Create Account</button>
                 <NavLink to="/login">
