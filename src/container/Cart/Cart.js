@@ -18,6 +18,7 @@ class Cart extends Component {
   }
 
   onCompletePuchase = () => {
+    // this.props.emptyCart();
     alert("Your order has been placed Successfully!");
   };
 
@@ -121,6 +122,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteItem: (product) => dispatch(actions.deleteFromCart(product)),
+    emptyCart: () => dispatch(actions.emptyCart()),
   };
 };
 

@@ -5,16 +5,15 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 
-
 class Logout extends Component {
     componentDidMount(){
         console.log(this.props.token);
         axios({
-            method: 'get',
-            url: '/doLogout?'
+            method: 'post',
+            url: '/doLogout'
             ,
             headers: {
-              'Authorization': `bearer ${this.props.token}`}
+              'Authorization': `Bearer ${this.props.token}`}
           })
           .then((response)=> {
             this.props.onLogout();
@@ -24,7 +23,6 @@ class Logout extends Component {
             console.log(error.response);
         });
     }
-
     state = { 
         isLoading:true
      }

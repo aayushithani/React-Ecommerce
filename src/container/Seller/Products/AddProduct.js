@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import classes from "./ProductList.module.css";
-import { Card, Button } from "react-bootstrap";
-import axios from 'axios';
+import { Card, Button, CardDeck } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import axios from "axios";
 
 export class AddProduct extends Component {
-
-  state = {}
+  state = {
+    error: null,
+  };
 
   onChangeHandler = (event) => {
     this.setState({
@@ -14,44 +17,44 @@ export class AddProduct extends Component {
     });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     axios({
       method: "post",
       url: `/sellers/products`,
       data: {
         name: this.state.name,
-        description:this.state.description,
-        category:this.state.category,
-        brand:this.state.brand,
-        isCancellable:this.state.isCancellable,
-        isReturnable:this.state.isReturnable
+        description: this.state.description,
+        category: this.state.category,
+        brand: this.state.brand,
+        isCancellable: this.state.isCancellable,
+        isReturnable: this.state.isReturnable,
       },
       headers: {
-        Authorization: `bearer ${this.props.token}`,
+        Authorization: `Bearer ${this.props.token}`,
       },
     })
       .then((response) => {
-        this.setState({
-          ...this.state,
-        });
-        alert("Product Added Successfully!")
+        console.log("Prduct Added");
+        alert("Product Added Successfully!");
       })
       .catch((error) => {
-          console.log(error.response);
-        console.log(error.response.data.message);
+        console.log(error.response);
         if (error.response.data.message) {
           this.setState({
             error: error.response.data.message,
           });
         }
       });
-  }
+  };
 
-    render() {
-        return (
-            <Card
+  render() {
+    return (
+      <div className={classes.ProductList}>
+        <CardDeck className={classes.CardDeck}>
+          <Card
             className={classes.Card}
-            style={{ width: "380px", height: "460px" }}
+            style={{ width: "380px", height: "505px" }}
           >
             <form onSubmit={this.handleSubmit}>
               <Card.Body>
@@ -73,6 +76,16 @@ export class AddProduct extends Component {
                       placeholder="Category Name"
                       type="text"
                       name="brand"
+                      onChange={this.onChangeHandler}
+                    />
+                  </div>
+                  <div className={classes.name}>
+                    <label htmlFor="category">Brand</label>
+                    <input
+                      className={classes.name}
+                      placeholder="Category Name"
+                      type="text"
+                      name="category"
                       onChange={this.onChangeHandler}
                     />
                   </div>
@@ -107,21 +120,33 @@ export class AddProduct extends Component {
                     />
                   </div>
                 </div>
+                {this.state.error && (
+                  <label htmlFor="Error" style={{ color: "red" }}>
+                    {this.state.error}
+                  </label>
+                )}
+                <div className={classes.ButtonList}>
+                  <Button
+                    type="submit"
+                    variant="info"
+                    className={classes.Button}
+                    style={{ width: "295px",marginLeft:"440px" }}
+                  >
+                    Submit
+                  </Button>
+                </div>
               </Card.Body>
-    
-              <div className={classes.ButtonList}>
-                <Button
-                  variant="info"
-                  className={classes.Button}
-                  style={{ width: "113px" }}
-                >
-                  Variations
-                </Button>
-              </div>
             </form>
           </Card>
-        )
-    }
+        </CardDeck>
+      </div>
+    );
+  }
 }
+const mapStateToProps = (state) => {
+  return {
+    token: state.login.token,
+  };
+};
 
-export default AddProduct
+export default withRouter(connect(mapStateToProps, null)(AddProduct));

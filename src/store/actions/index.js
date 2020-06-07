@@ -6,6 +6,7 @@ export {
 
 export {
     deleteFromCart ,
-    addToCart
+    addToCart,
+    emptyCart,
 } from './cart';
 

@@ -13,8 +13,6 @@ class ProductVariation extends Component {
   };
 
   onChangeHandler = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
     this.setState({
       ...this.state,
       [event.target.name]: event.target.value,
@@ -33,8 +31,8 @@ class ProductVariation extends Component {
       method: "patch",
       url: `/sellers/products/variations/${this.state.ProductVariationID}`,
       data: {
-        price: this.state.price,
-        quantityAvailable: this.state.quantity_available,
+        price: parseFloat(this.state.price),
+        quantityAvailable: parseFloat(this.state.quantity_available),
       },
       headers: {
         Authorization: `bearer ${this.props.token}`,
@@ -106,7 +104,7 @@ class ProductVariation extends Component {
                 <input
                   className={classes.name}
                   placeholder="Category Name"
-                  type="text"
+                  type="decimal"
                   name="quantity_available"
                   value={this.state.quantity_available}
                   onChange={this.onChangeHandler}
@@ -118,7 +116,7 @@ class ProductVariation extends Component {
                 <input
                   className={classes.name}
                   placeholder="Category Name"
-                  type="text"
+                  type="decimal"
                   name="price"
                   value={this.state.price}
                   onChange={this.onChangeHandler}

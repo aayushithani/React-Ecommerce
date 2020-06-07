@@ -78,6 +78,7 @@ export const Validations = (event, errors) => {
     case "label":
       errors.label = value.length  === 0 ? "This is a required Field!" : "";
       break;
+      
     default:
       break;
   }
