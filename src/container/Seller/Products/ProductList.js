@@ -10,7 +10,7 @@ export class ProductList extends Component {
     componentDidMount() {
         const token = this.props.token;
         axios
-          .get(`/admin/products`, {
+          .get(`/sellers/products`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -26,13 +26,12 @@ export class ProductList extends Component {
           console.log(this.state);
       }
 
-      ProductListResponse = () => {
+      RegisteredCustomersResponse = () => {
         let output = [];
         let data = this.state;
         for (let key in data) {
           if (this.state.hasOwnProperty(key)) {
             const value = this.state[key];
-            console.log("Product ID",value.id);
             output.push(
               <div className={classes.Product} key={value.id}>
                 <Product data={value} />
@@ -48,7 +47,7 @@ export class ProductList extends Component {
             <div className={classes.ProductList}>
                 <h1>List Of Products</h1>
                 <CardDeck className={classes.CardDeck}>
-                    {this.ProductListResponse()}
+                    {this.RegisteredCustomersResponse()}
                 </CardDeck>
             </div>
         );

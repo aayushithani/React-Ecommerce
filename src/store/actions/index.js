@@ -1,6 +1,7 @@
 export {
     loginSuccess ,
-    userRole
+    userRole,
+    logoutSuccess
 } from './login';
 
 export {

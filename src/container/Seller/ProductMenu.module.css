@@ -1,0 +1,36 @@
+.ProductMenu {
+    width: 100%;
+    height: auto;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    /* background-color: white; */
+}
+
+.ProductMenu .Row{
+    height: auto;
+    margin:10px;
+    padding: 10px;
+}
+
+.ProductMenu .Col{
+    font-family: 'Lato' sans-serif;
+    padding:10px
+}
+
+.ProductMenu .MenuButton {
+    background-color: #f98713;
+    color: #fff;
+    border: 2px solid #fff;
+    margin-top: 0.4em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+ 
+  .ProductMenu .MenuButton:hover {
+    color: #f98713;
+    background-color: #fff;
+    border: 2px solid #f98713;
+  }

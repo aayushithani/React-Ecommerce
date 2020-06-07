@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { Card,Button } from "react-bootstrap";
-import classes from "./CategoryList.module.css";
-import axios from "axios";
+import { Card ,Button} from "react-bootstrap";
+import classes from '../CategoryList/CategoryList.module.css'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import axios from 'axios';
 
 class Category extends Component {
   state = {
     ...this.props.data,
     error: null,
     disabled: true,
+
   };
 
   onChangeHandler = (event) => {
@@ -22,6 +23,7 @@ class Category extends Component {
   };
 
   onEditHandler = (id) => {
+      console.log(this.state);
     this.setState({
       ...this.state,
       disabled: false,
@@ -30,10 +32,12 @@ class Category extends Component {
 
   onUpdateHandler = () => {
     axios({
-      method: "post",
-      url: `/admin/rootCategories/${this.state.id}`,
+      method: "put",
+      url: `/admin/metadata-field-values`,
       data: {
-        name: this.state.name,
+        categoryMetadataFieldId:this.state.category_metadata_field_id,
+        categoryId:this.state.category_id,
+        value: this.state.value,
       },
       headers: {
         Authorization: `bearer ${this.props.token}`,
@@ -44,7 +48,7 @@ class Category extends Component {
           ...this.state,
           disabled: true,
         });
-        alert("Category Updated Successfully!");
+        alert("Category Metadata Field Updated Successfully!");
       })
       .catch((error) => {
         console.log(error.response);
@@ -62,16 +66,13 @@ class Category extends Component {
     });
   };
 
-  onSubCategoryHandler = () => {
-    console.log(this.state.id);
-    this.props.history.push(`/SubCategory/${this.state.id}`);
-  };
 
   render() {
+      console.log(this.state)
     return (
       <Card
         className={classes.Card}
-        style={{ width: "350px", height: "292px" }}
+        style={{ width: "350px", height: "300" }}
       >
         <form onSubmit={this.handleSubmit} noValidate>
         <Card.Body>
@@ -80,22 +81,30 @@ class Category extends Component {
                   <label htmlFor="CategoryId">Category ID</label>
                   <input
                     className={classes.name}
-                    placeholder="Category ID"
                     type="text"
                     name="CategoryId"
-                    defaultValue={this.state.id}
+                    defaultValue={this.state.category_id}
                     disabled
                   />
                 </div>
-
                 <div className={classes.name}>
-                  <label htmlFor="name">Category Name</label>
+                  <label htmlFor="CategoryId">Category Metadata Field ID</label>
                   <input
                     className={classes.name}
-                    placeholder="Category Name"
                     type="text"
-                    name="name"
-                    value={this.state.name}
+                    name="category_metadata_field_id"
+                    defaultValue={this.state.category_metadata_field_id}
+                    disabled
+                  />
+                </div>
+                <div className={classes.name}>
+                  <label htmlFor="name">Value</label>
+                  <input
+                    className={classes.name}
+                    placeholder="Value"
+                    type="text"
+                    name="value"
+                    value={this.state.value}
                     onChange={this.onChangeHandler}
                     disabled={this.state.disabled ? true : null}
                   />
@@ -124,13 +133,7 @@ class Category extends Component {
                   Update
                 </Button>
               )}
-              <Button
-                className={classes.Details}
-                onClick={this.onSubCategoryHandler}
-              >
-                Details
-              </Button>
-            </div>
+              </div>
           </Card.Body>
           </form>
       </Card>

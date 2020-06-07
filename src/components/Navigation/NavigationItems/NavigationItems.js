@@ -28,7 +28,7 @@ class Navigation extends Component {
               <NavLink to="/cart">Cart</NavLink>
             </li>
             <li className={classes.NavigationItem}>
-              <NavLink to="/customerProfile">Profile</NavLink>
+              <NavLink to="/customer/Profile">Profile</NavLink>
             </li>
             <li className={classes.NavigationItem}>
               <NavLink to="/logout">Logout</NavLink>
@@ -40,10 +40,13 @@ class Navigation extends Component {
         this.props.authority === "ROLE_SELLER" ? (
           <ul className={classes.NavigationItems}>
             <li className={classes.NavigationItem}>
-              <NavLink to="/homePage">Home</NavLink>
+              <NavLink to="/seller/Profile">Profile</NavLink>
             </li>
             <li className={classes.NavigationItem}>
-              <NavLink to="/sellerProfile">SELLER</NavLink>
+              <NavLink to="/">Products</NavLink>
+            </li>
+            <li className={classes.NavigationItem}>
+              <NavLink to="/logout">Logout</NavLink>
             </li>
           </ul>
         ) : null}
@@ -54,13 +57,16 @@ class Navigation extends Component {
               <NavLink to="/homePage">Home</NavLink>
             </li>
             <li className={classes.NavigationItem}>
-              <NavLink to="/admin/Profile">Users</NavLink>
+              <NavLink to="/admin/Users">Users</NavLink>
             </li>
             <li className={classes.NavigationItem}>
               <NavLink to="/admin/Products">Products</NavLink>
             </li>
             <li className={classes.NavigationItem}>
               <NavLink to="/admin/Category">Category</NavLink>
+            </li>
+            <li className={classes.NavigationItem}>
+              <NavLink to="/logout">Logout</NavLink>
             </li>
           </ul>
         ) : null}

@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import classes from "./AddCategory.module.css";
+import classes from "../AddCategory/AddCategory.module.css";
 import axios from 'axios';
 import { connect } from "react-redux";
 
-export class AddCategory extends Component {
+export class AddMetadataFieldValues extends Component {
   state = {
-    parentId:null,
       name:null,
-    error: null,
+    error: null
   };
 
   onChangeHandler = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
     this.setState({
       ...this.state,
       [event.target.name]: event.target.value,
@@ -21,13 +18,13 @@ export class AddCategory extends Component {
   };
 
   onSubCategoryHandler = () => {
-
-    if(this.state.parentId == null){
         axios({
             method: "post",
-            url: `/admin/categories`,
+            url: `/admin/metadata-field-values`,
             data: {
-              name: this.state.name,
+                categoryMetadataFieldId:this.state.categoryMetadataFieldId,
+                categoryId:this.state.categoryId,
+                value: this.state.value
             },
             headers: {
               Authorization: `bearer ${this.props.token}`,
@@ -36,9 +33,8 @@ export class AddCategory extends Component {
             .then((response) => {
               this.setState({
                 ...this.state,
-                disabled: true,
               });
-              alert("Category Updated Successfully!")
+              alert("Category Metadata Field Added Successfully!")
             })
             .catch((error) => {
                 console.log(error.response);
@@ -49,63 +45,43 @@ export class AddCategory extends Component {
                 });
               }
             });
-    }
-    else{
-        axios({
-            method: "post",
-            url: `/admin/categories`,
-            data: {
-                parentId: this.state.parentId,
-              name: this.state.name,
-            },
-            headers: {
-              Authorization: `bearer ${this.props.token}`,
-            },
-          })
-            .then((response) => {
-              this.setState({
-                ...this.state,
-                disabled: true,
-              });
-              alert("Category Updated Successfully!")
-            })
-            .catch((error) => {
-                console.log(error.response);
-              console.log(error.response.data.message);
-              if (error.response.data.message) {
-                this.setState({
-                  error: error.response.data.message,
-                });
-              }
-            });
-    }
-    
   }
 
   render() {
+      console.log(this.state);
     return (
       <div className={classes.CategoryList}>
         <Container className={classes.Container}>
           <Row className={classes.Row}>
             <Col sm={12} className={classes.Col}>
               <form onSubmit={this.handleSubmit}>
-              <div className={classes.name}>
-                  <label htmlFor="name">Parent Category ID</label>
+                <div className={classes.name}>
+                  <label htmlFor="name">category MetadataField Id</label>
                   <input
                     className={classes.name}
-                    placeholder="Category Name"
+                    placeholder="Category MetadataField Id"
                     type="text"
-                    name="parentId"
+                    name="categoryMetadataFieldId"
                     onChange={this.onChangeHandler}
                   />
                 </div>
                 <div className={classes.name}>
-                  <label htmlFor="name">Category Name</label>
+                  <label htmlFor="name">Category ID</label>
                   <input
                     className={classes.name}
-                    placeholder="Category Name"
+                    placeholder="Category ID"
                     type="text"
-                    name="name"
+                    name="categoryId"
+                    onChange={this.onChangeHandler}
+                  />
+                </div>
+                <div className={classes.name}>
+                  <label htmlFor="name">Value</label>
+                  <input
+                    className={classes.name}
+                    placeholder="Value"
+                    type="text"
+                    name="value"
                     onChange={this.onChangeHandler}
                   />
                 </div>
@@ -122,7 +98,7 @@ export class AddCategory extends Component {
                   className={classes.Details}
                   onClick={this.onSubCategoryHandler}
                 >
-                  Add Category
+                  Add Category Metadata Field Value
                 </Button>
               </div>
             </Col>
@@ -138,4 +114,4 @@ const mapStateToProps = (state) => {
     };
   };
   
-  export default connect(mapStateToProps, null)(AddCategory) ;
+  export default connect(mapStateToProps, null)(AddMetadataFieldValues) ;

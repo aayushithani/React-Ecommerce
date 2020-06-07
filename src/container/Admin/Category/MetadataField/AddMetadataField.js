@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import classes from "./AddCategory.module.css";
+import classes from "../AddCategory/AddCategory.module.css";
 import axios from 'axios';
 import { connect } from "react-redux";
 
-export class AddCategory extends Component {
+export class AddMetadataField extends Component {
   state = {
-    parentId:null,
       name:null,
-    error: null,
+    error: null
   };
 
   onChangeHandler = (event) => {
@@ -21,11 +20,9 @@ export class AddCategory extends Component {
   };
 
   onSubCategoryHandler = () => {
-
-    if(this.state.parentId == null){
         axios({
             method: "post",
-            url: `/admin/categories`,
+            url: `/admin/metadata-field`,
             data: {
               name: this.state.name,
             },
@@ -36,9 +33,8 @@ export class AddCategory extends Component {
             .then((response) => {
               this.setState({
                 ...this.state,
-                disabled: true,
               });
-              alert("Category Updated Successfully!")
+              alert("Category Metadata Field Added Successfully!")
             })
             .catch((error) => {
                 console.log(error.response);
@@ -49,56 +45,16 @@ export class AddCategory extends Component {
                 });
               }
             });
-    }
-    else{
-        axios({
-            method: "post",
-            url: `/admin/categories`,
-            data: {
-                parentId: this.state.parentId,
-              name: this.state.name,
-            },
-            headers: {
-              Authorization: `bearer ${this.props.token}`,
-            },
-          })
-            .then((response) => {
-              this.setState({
-                ...this.state,
-                disabled: true,
-              });
-              alert("Category Updated Successfully!")
-            })
-            .catch((error) => {
-                console.log(error.response);
-              console.log(error.response.data.message);
-              if (error.response.data.message) {
-                this.setState({
-                  error: error.response.data.message,
-                });
-              }
-            });
-    }
-    
   }
 
   render() {
+      console.log(this.state);
     return (
       <div className={classes.CategoryList}>
         <Container className={classes.Container}>
           <Row className={classes.Row}>
             <Col sm={12} className={classes.Col}>
               <form onSubmit={this.handleSubmit}>
-              <div className={classes.name}>
-                  <label htmlFor="name">Parent Category ID</label>
-                  <input
-                    className={classes.name}
-                    placeholder="Category Name"
-                    type="text"
-                    name="parentId"
-                    onChange={this.onChangeHandler}
-                  />
-                </div>
                 <div className={classes.name}>
                   <label htmlFor="name">Category Name</label>
                   <input
@@ -122,7 +78,7 @@ export class AddCategory extends Component {
                   className={classes.Details}
                   onClick={this.onSubCategoryHandler}
                 >
-                  Add Category
+                  Add Category Metadata Field
                 </Button>
               </div>
             </Col>
@@ -138,4 +94,4 @@ const mapStateToProps = (state) => {
     };
   };
   
-  export default connect(mapStateToProps, null)(AddCategory) ;
+  export default connect(mapStateToProps, null)(AddMetadataField) ;

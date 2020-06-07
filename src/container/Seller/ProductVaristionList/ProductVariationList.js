@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux';
-import Product from './Product';
-import classes from './ProductList.module.css';
+import ProductVariation from './ProductVariation';
+import classes from '../Products/ProductList.module.css';
 import { CardDeck } from "react-bootstrap";
 
 
-export class ProductList extends Component {
+export class ProductVariationList extends Component {
     componentDidMount() {
-        const token = this.props.token;
+        const { productId } = this.props.match.params
         axios
-          .get(`/admin/products`, {
+          .get(`/sellers/products/${productId}/variations`, {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${this.props.token}`,
             },
           })
           .then((response)=> {
@@ -26,16 +26,15 @@ export class ProductList extends Component {
           console.log(this.state);
       }
 
-      ProductListResponse = () => {
+      ProductVariationResponse = () => {
         let output = [];
         let data = this.state;
         for (let key in data) {
           if (this.state.hasOwnProperty(key)) {
             const value = this.state[key];
-            console.log("Product ID",value.id);
             output.push(
               <div className={classes.Product} key={value.id}>
-                <Product data={value} />
+                <ProductVariation data={value} />
               </div>
             );
           }
@@ -46,9 +45,9 @@ export class ProductList extends Component {
     render() {
         return (
             <div className={classes.ProductList}>
-                <h1>List Of Products</h1>
+                <h1>List Of Products Variations</h1>
                 <CardDeck className={classes.CardDeck}>
-                    {this.ProductListResponse()}
+                    {this.ProductVariationResponse()}
                 </CardDeck>
             </div>
         );
@@ -61,4 +60,4 @@ const mapStateToProps = (state) => {
     };
   };
   
-export default  connect(mapStateToProps, null)(ProductList);
+export default  connect(mapStateToProps, null)(ProductVariationList);

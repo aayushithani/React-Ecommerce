@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col,Button } from "react-bootstrap";
+import { Card,Button } from "react-bootstrap";
 import classes from '../CategoryList.module.css'
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -64,52 +64,65 @@ class SubCategory extends Component {
 
     render() {
         return (
-             <Container className={classes.Container}>
-        <Row className={classes.Row}>
-          <Col sm={9} className={classes.Col}>
-            <form onSubmit={this.handleSubmit} noValidate>
-              <div className={classes.CategoryId}>
-                <label htmlFor="CategoryId">ID</label>
-                <input
-                  className={classes.CategoryId}
-                  name="CategoryId"
-                  defaultValue={this.state.id}
-                  disabled
-                />
-              </div>
-              <div className={classes.name}>
-                <label htmlFor="name">Category Name</label>
-                <input
-                  className={classes.name}
-                  placeholder="Category Name"
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.onChangeHandler}
-                  disabled={this.state.disabled ? true : null}
-                />
-              </div>
-            </form>
-            {this.state.error && (
+          <Card
+          className={classes.Card}
+          style={{ width: "350px", height: "292px",marginBottom:"10px" }}
+        >
+          <form onSubmit={this.handleSubmit} noValidate>
+          <Card.Body>
+            <div className={classes.Text}>
+                  <div className={classes.name}>
+                    <label htmlFor="CategoryId">Category ID</label>
+                    <input
+                      className={classes.name}
+                      type="text"
+                      name="CategoryId"
+                      defaultValue={this.state.id}
+                      disabled
+                    />
+                  </div>
+                  <div className={classes.name}>
+                    <label htmlFor="name">Category Name</label>
+                    <input
+                      className={classes.name}
+                      placeholder="Category Name"
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.onChangeHandler}
+                      disabled={this.state.disabled ? true : null}
+                    />
+                  </div>
+                  {this.state.error && (
               <label htmlFor="Error" style={{ color: "red" }}>
                 {this.state.error}
               </label>
             )}
-          </Col>
-          <Col sm={4} className={classes.Col}>
-          <div className={classes.ButtonList}>
-            {this.state.disabled ? (
-              <Button className={classes.EditButton} onClick={() => this.onEditHandler()}>Edit</Button>
-            ) : null}
-            {this.state.disabled ? null : (
-              <Button className={classes.UpdateButton} type="submit" onClick={() => this.onUpdateHandler()}>
-                Update
-              </Button>
-            )} 
-          </div>
-          </Col>
-        </Row>
-      </Container>
+            </div>
+            <div className={classes.ButtonList}>
+                {this.state.disabled ? (
+                  <Button
+                    className={classes.EditButton}
+                    onClick={() => this.onEditHandler()}
+                    style={{width:"304px"}}
+                  >
+                    Edit
+                  </Button>
+                ) : null}
+                {this.state.disabled ? null : (
+                  <Button
+                    className={classes.UpdateButton}
+                    type="submit"
+                    onClick={() => this.onUpdateHandler()}
+                    style={{width:"304px"}}
+                  >
+                    Update
+                  </Button>
+                )}
+              </div>
+            </Card.Body>
+            </form>
+        </Card>
         )
     }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Category from './Category';
 import classes from './CategoryList.module.css'
+import {CardDeck} from 'react-bootstrap';
 
 export class CategoryList extends Component {
     state = {};
@@ -22,14 +23,14 @@ export class CategoryList extends Component {
           console.log(this.state);
       }
 
-      RegisteredCustomersResponse = () => {
+      CategoryListResponse = () => {
         let output = [];
         let data = this.state;
         for (let key in data) {
           if (this.state.hasOwnProperty(key)) {
             const value = this.state[key];
             output.push(
-              <div key={value.id}>
+              <div className={classes.Category} key={value.id}>
                 <Category data={value} />
               </div>
             );
@@ -40,9 +41,10 @@ export class CategoryList extends Component {
     render() {
         return (
           <div className={classes.CategoryList}>
-            <h1>Root Category</h1>
-            {this.RegisteredCustomersResponse()}
-          </div>
+          <CardDeck className={classes.CardDeck}>
+              {this.CategoryListResponse()}
+          </CardDeck>
+      </div>
         );
       }
 }

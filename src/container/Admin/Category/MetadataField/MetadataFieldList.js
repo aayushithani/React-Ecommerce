@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import SubCategory from './SubCategory';
-import classes from '../CategoryList.module.css'
-import { connect } from 'react-redux';
+import MetadataField from './MetadataField'
+import classes from '../CategoryList/CategoryList.module.css'
 import {CardDeck} from 'react-bootstrap';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-export class SubCategoryList extends Component {
+export class MetadataFieldList extends Component {
     state = {};
 
     componentDidMount() {
-        const { categoryId } = this.props.match.params
-        console.log("CATEGORY ID",categoryId);
-        axios({
-            method: "get",
-            url: `/admin/rootCategories/${categoryId}`,
-            headers: {
-              Authorization: `bearer ${this.props.token}`,
-            },
-          }).then((response)=> {
+        axios
+        .get(`/admin/metadata-fields`,{headers: {
+            Authorization: `bearer ${this.props.token}`,
+          }})
+        .then((response)=> {
+            console.log(response.data);
+            console.log(response.data.data);
             this.setState({
                 ...this.state,
                 ...response.data.data
@@ -28,16 +27,15 @@ export class SubCategoryList extends Component {
           console.log(this.state);
       }
 
-      SubCategoryResponse = () => {
+      CategoryListResponse = () => {
         let output = [];
         let data = this.state;
         for (let key in data) {
           if (this.state.hasOwnProperty(key)) {
             const value = this.state[key];
-            console.log("ID",value.id);
             output.push(
-              <div key={value.id}>
-                <SubCategory data={value} />
+              <div className={classes.Category} key={value.id}>
+                <MetadataField data={value} />
               </div>
             );
           }
@@ -48,17 +46,20 @@ export class SubCategoryList extends Component {
         return (
           <div className={classes.CategoryList}>
           <CardDeck className={classes.CardDeck}>
-        <h1>Sub Category</h1>
-              {this.SubCategoryResponse()}
+              {this.CategoryListResponse()}
           </CardDeck>
       </div>
         );
       }
 }
-const mapStateToProps = (state) => {
-  return {
-    token: state.login.token,
-  };
-};
 
-export default connect(mapStateToProps, null)(SubCategoryList);
+
+const mapStateToProps = (state) => {
+    return {
+      token: state.login.token,
+    };
+  };
+  
+  export default withRouter(connect(mapStateToProps, null)(MetadataFieldList));
+  
+

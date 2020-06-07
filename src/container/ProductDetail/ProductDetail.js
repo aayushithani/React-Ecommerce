@@ -72,12 +72,15 @@ class ProductDetail extends Component {
                     Price: ₹ {this.state.ProductVariation.Price}
                   </p>
                 </h6>
-
+                {this.props.authority === "ROLE_ADMIN"  || this.props.authority === "ROLE_SELLER" ? null: (
+                <div>
                 <p style={{ color: "green" }}>In stock.</p>
                 <p style={{ fontWeight: "bold" }}>Delivery by: Wed, Jun 3</p>
                 <p style={{ color: "green" }}>
                   <ins>Fastest delivery: May 28 - 30 Details</ins>
                 </p>
+                </div>
+                )}
 
                 <p style={{ textAlign: "justify" }}>
                   <strong> Description:</strong>{" "}
@@ -85,7 +88,7 @@ class ProductDetail extends Component {
                 </p>
               </div>
             </Col>
-            {this.props.authority === "ROLE_ADMIN" ? null : (
+            {this.props.authority === "ROLE_ADMIN"  || this.props.authority === "ROLE_SELLER" ? null: (
               <Col sm={3} className={classes.ProductBuyNow}>
                 <div className={classes.ProductPrice}>
                   <Container fluid="md">

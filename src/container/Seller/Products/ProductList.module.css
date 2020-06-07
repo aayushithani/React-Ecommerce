@@ -1,0 +1,200 @@
+.ProductList{
+
+  width: 100%;
+  margin: 20px;
+  
+  }
+  
+  .ProductList h1{
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+  }
+  
+  .ProductList .Product{
+    margin-bottom: 10px;
+  }
+  
+  .Product .CardDeck{ 
+    width:auto;
+    background-color: white;
+    flex-wrap: wrap;
+    z-index: -9;
+    margin-bottom: 10px;
+  }
+  
+  .Product .CardDeck .Card{
+    margin: 10px;
+    padding:10px;
+    background-color: white;
+    justify-content: space-between;
+    border: 1px white solid;
+    height: 100px;
+    width: 100px;
+  }
+
+  .Product .Body{
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .ProductList .Product .Text{
+    font-size: 14px;
+    color: black;
+  }
+  
+  .ProductList .Product .Title{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .ProductList .Product .ButtonList{
+    width: 100%;
+  }
+  
+  .ProductList .Product .ButtonList .Button{
+    margin: 10px;
+    padding: 10px;
+    height:42px;
+    width: 100px;
+  }
+  
+  .ProductList .EditButton{
+    background-color:green;
+    color: white;
+    border: 2px solid white;
+    padding:10px;
+    margin:2px;
+  }
+  
+  .ProductList .EditButton:hover{
+  background-color:white;
+  color: green;
+  border: 2px solid green;
+  }
+  
+  .ProductList .UpdateButton{
+    background-color:red;
+    color: white;
+    border: 2px solid white;
+    padding:10px;
+    margin:2px;
+  }
+  
+  .ProductList .UpdateButton:hover{
+  background-color:white;
+  color: red;
+  border: 2px solid red;
+  }
+  
+  .ProductList .Details{
+    background-color:#17a2b8;
+    color: white;
+    border: 2px solid white;
+    padding:10px;
+    margin:2px
+  }
+  
+  .ProductList .Details:hover{
+  background-color:white;
+  color: #17a2b8;
+  border: 2px solid #17a2b8;
+  }
+  
+  
+  .ProductList form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .ProductList h1 {
+    text-align: center;
+    width: 100%;
+    color: #111;
+    font-size: 1.7em;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .ProductList label {
+    font-size: 0.8em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+  }
+  
+  .ProductList input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    height: 30px;
+  }
+  
+  .ProductList input::placeholder,
+  .ProductList textarea::placeholder {
+    font-size: 1.0em;
+    font-weight: lighter;
+    color: #999;
+  }
+
+  .ProductList textarea{
+      height: 50px;
+  }
+  
+  
+  .ProductList .name{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  
+  .ProductList .name {
+    width: 100%;
+  }
+  
+  .ProductList .ProductName,
+  .ProductList .Description,
+  .ProductList .cancellable{
+    margin-right: 1%;
+  }
+  
+  .ProductList .brand,
+  .ProductList .returnable{
+    margin-left: 1%;
+  }
+
+
+
+  .ProductList .ProductName,
+  .ProductList .Description,
+  .ProductList .cancellable,
+  .ProductList .brand,
+  .ProductList .returnable {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  
+  .ProductList .ProductName,
+  .ProductList .cancellable,
+  .ProductList .brand,
+  .ProductList .returnable {
+    width: 184px;
+  }
+
+  .ProductList .Description{
+    width: 100%;
+  }
+
+
+  .ProductList .CardDeck .CardImg{
+    height: 150px;
+    width: 150px;
+    margin-left: 118px;
+
+}
